@@ -58,7 +58,7 @@ Feel free to refer to the documentation for detailed information on data prepara
 
 To ensure the proper operation of the MUSE program, users are required to provide 5 TIF files containing specific spatial data crucial for model execution. These files cover essential information such as the distribution of urban construction land at the base and model validation simulation sites, probability of urban construction appropriateness, urban development construction constraints, and urban center point data. It is imperative that these files maintain rigorous consistency in spatial features, including the same number of rows and columns, projection coordinates, and spatial resolution. Refer to Figure 3-6 for an example file.
 
-![Figure 2-1: Model Input Data Files](https://github.com/LandInsightLab/MUSE/blob/master/resources/doc/2-1%20Model%20Input%20Data%20Files.png)
+![Figure 2-1: Model Input Data Files](https://github.com/Mr-ShiRui/MUSE/blob/master/resources/doc/2-1%20Model%20Input%20Data%20Files.png)
 
 ## 2.2 TIF Files Overview
 
@@ -111,25 +111,25 @@ Feel free to refer to Table 1 for a quick reference to each model input data fil
 ### Step 1:
 Double-click the software installation package [MUSE_Setup_1.0.exe](http://example.com) and select the installation mode. It is recommended to choose "Install for all users".
 
-![Figure 3-1: MUSE Shortcut](https://github.com/LandInsightLab/MUSE/blob/master/resources/doc/3-1%20MUSE%20Shortcut.png)
-![Figure 3-2: Installation Mode Selection](https://github.com/LandInsightLab/MUSE/blob/master/resources/doc/3-2%20Installation%20Mode%20Selection.png)
+![Figure 3-1: MUSE Shortcut](https://github.com/Mr-ShiRui/MUSE/blob/master/resources/doc/3-1%20MUSE%20Shortcut.png)
+![Figure 3-2: Installation Mode Selection](https://github.com/Mr-ShiRui/MUSE/blob/master/resources/doc/3-2%20Installation%20Mode%20Selection.png)
 
 ### Step 2:
 Customize the installation directory (default or modified) and select the Start menu folder.
 
-![Figure 3-3: Installation Directory Customization](https://github.com/LandInsightLab/MUSE/blob/master/resources/doc/3-3%20Installation%20Directory%20Customization.png)
-![Figure 3-4: Start Menu Folder Selection](https://github.com/LandInsightLab/MUSE/blob/master/resources/doc/3-4%20Start%20Menu%20Folder%20Selection.png)
+![Figure 3-3: Installation Directory Customization](https://github.com/Mr-ShiRui/MUSE/blob/master/resources/doc/3-3%20Installation%20Directory%20Customization.png)
+![Figure 3-4: Start Menu Folder Selection](https://github.com/Mr-ShiRui/MUSE/blob/master/resources/doc/3-4%20Start%20Menu%20Folder%20Selection.png)
 
 ### Step 3:
 Check the box for "Create desktop shortcut," then verify the installation information, and click on "Install" to proceed.
 
-![Figure 3-5: Desktop Shortcut Creation Selection](https://github.com/LandInsightLab/MUSE/blob/master/resources/doc/3-5%20Desktop%20Shortcut%20Creation%20Selection.png)
-![Figure 3-6: Installation Information Confirmation](https://github.com/LandInsightLab/MUSE/blob/master/resources/doc/3-6%20Installation%20Information%20Confirmation.png)
+![Figure 3-5: Desktop Shortcut Creation Selection](https://github.com/Mr-ShiRui/MUSE/blob/master/resources/doc/3-5%20Desktop%20Shortcut%20Creation%20Selection.png)
+![Figure 3-6: Installation Information Confirmation](https://github.com/Mr-ShiRui/MUSE/blob/master/resources/doc/3-6%20Installation%20Information%20Confirmation.png)
 
 After the installation progress is complete, click Finish to complete the installation.
 
-![Figure 3-7: Installation Progress](https://github.com/LandInsightLab/MUSE/blob/master/resources/doc/3-7%20Installation%20Progress.png)
-![Figure 3-8: Installation Completed](https://github.com/LandInsightLab/MUSE/blob/master/resources/doc/3-8%20Installation%20Completed.png)
+![Figure 3-7: Installation Progress](https://github.com/Mr-ShiRui/MUSE/blob/master/resources/doc/3-7%20Installation%20Progress.png)
+![Figure 3-8: Installation Completed](https://github.com/Mr-ShiRui/MUSE/blob/master/resources/doc/3-8%20Installation%20Completed.png)
 
 ## 3.2 Running the Software
 
@@ -137,7 +137,7 @@ After the installation progress is complete, click Finish to complete the instal
 
 **Step 1:** Find the MUSE shortcut, double-click to run it, and access the main program interface as shown in Figure 4-9.
 
-![Figure 4-9: The main interface of MUSE](https://github.com/LandInsightLab/MUSE/blob/master/resources/doc/3-9%20The%20main%20interface%20of%20MUSE.png)
+![Figure 4-9: The main interface of MUSE](https://github.com/Mr-ShiRui/MUSE/blob/master/resources/doc/3-9%20The%20main%20interface%20of%20MUSE.png)
 
 **Step 2:** Enter the required data for the model in the input data area, inputting each dataset as per the corresponding relationship outlined in Table 2.
 
@@ -194,7 +194,7 @@ After the installation progress is complete, click Finish to complete the instal
 
 **Step 7:** To initiate the model execution, click on the 'Start Simulation' button. The program will transition into the running state, and upon completion of the simulation, the 'Save Simulation Data' button will shift from being inactive to an active clickable state, as illustrated in 
 
-![Figure 3-10: The interface after the execution has completed](https://github.com/LandInsightLab/MUSE/blob/master/resources/doc/3-10%20The%20interface%20after%20the%20execution%20has%20completed.png)
+![Figure 3-10: The interface after the execution has completed](https://github.com/Mr-ShiRui/MUSE/blob/master/resources/doc/3-10%20The%20interface%20after%20the%20execution%20has%20completed.png)
 
 **Step 8:** To assess the simulation accuracy, MUSE offers three indices: Kappa, Operation Accuracy (OA), and Figure of Merit (FOM). These indices are utilized to characterize the model's simulation accuracy.
 
@@ -210,7 +210,7 @@ The necessary inputs for users in scenario prediction include data on developmen
 
 Once these preparations are finalized, users simply need to click on the "Run" button to commence the simulation for scenario prediction. After the simulation process is completed, users can save the predicted results at a specified location by clicking on "Save Simulation Data".
 
-![Figure 4-11: Scenario Simulation Interface](https://github.com/LandInsightLab/MUSE/blob/master/resources/doc/3-11%20Scenario%20Simulation%20Interface.png)
+![Figure 4-11: Scenario Simulation Interface](https://github.com/Mr-ShiRui/MUSE/blob/master/resources/doc/3-11%20Scenario%20Simulation%20Interface.png)
 
 ### 3.3. Saving and Opening Parameter Files
 
@@ -220,7 +220,7 @@ Users have the option to save the configured input files and various parameters 
 
 Upon reviewing the completed simulation results, you'll notice that the pixel values range from 0 to 'n'. In the symbol system of ArcGIS software, unique values are displayed sequentially, presenting pixel values as 0, 1, i...n. Here, 'i' represents the initial value set at the beginning of the simulation plus 1, while 'n' represents the value set at the end of the simulation. This setup provides a clear insight into the spatial arrangement of newly added urban construction land at each time step.
 
-![Figure 4-12: Simulation results of urban construction land in Changsha from 2005 to 2015](https://github.com/LandInsightLab/MUSE/blob/master/resources/doc/3-12%20Simulation%20results%20of%20urban%20construction%20land%20in%20Changsha%20from%202005%20to%202015.png)
+![Figure 4-12: Simulation results of urban construction land in Changsha from 2005 to 2015](https://github.com/Mr-ShiRui/MUSE/blob/master/resources/doc/3-12%20Simulation%20results%20of%20urban%20construction%20land%20in%20Changsha%20from%202005%20to%202015.png)
 
 
 
