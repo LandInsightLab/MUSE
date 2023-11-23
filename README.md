@@ -102,14 +102,14 @@ Feel free to refer to Table 1 for a quick reference to each model input data fil
 
 # 3. User Guide
 
-**Note:** The following installation steps apply only if you are using the downloaded [MUSE_Setup_1.0.exe](http://example.com). If the software environment is cloned, the installation steps are unnecessary.
+**Note:** The following installation steps apply only if you are using the downloaded [MUSE_Setup_1.0.exe](https://github.com/Mr-ShiRui/MUSE/releases/tag/v1.0.0). If the software environment is cloned, the installation steps are unnecessary.
 
 ## 3.1 Software Installation
 
 ## 3.1 Software Installation
 
 ### Step 1:
-Double-click the software installation package [MUSE_Setup_1.0.exe](http://example.com) and select the installation mode. It is recommended to choose "Install for all users".
+Double-click the software installation package [MUSE_Setup_1.0.exe](https://github.com/Mr-ShiRui/MUSE/releases/tag/v1.0.0) and select the installation mode. It is recommended to choose "Install for all users".
 
 ![Figure 3-1: MUSE Shortcut](https://github.com/Mr-ShiRui/MUSE/blob/master/resources/doc/3-1%20MUSE%20Shortcut.png)
 ![Figure 3-2: Installation Mode Selection](https://github.com/Mr-ShiRui/MUSE/blob/master/resources/doc/3-2%20Installation%20Mode%20Selection.png)
