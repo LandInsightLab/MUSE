@@ -1,0 +1,16 @@
+<RCC>
+    <qresource prefix="/">
+        <file>resources/MUSE.ico</file>
+        <file>resources/MUSE_LOGO2.png</file>
+        <file>resources/MUSE_LOGO2.svg</file>
+        <file>resources/add.svg</file>
+        <file>resources/check.svg</file>
+        <file>resources/del.svg</file>
+        <file>resources/down.svg</file>
+        <file>resources/failed_check.svg</file>
+        <file>resources/help.svg</file>
+        <file>resources/remove.svg</file>
+        <file>resources/successfully_checked.svg</file>
+        <file>resources/up.svg</file>
+    </qresource>
+</RCC>
