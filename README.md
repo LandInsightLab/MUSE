@@ -50,4 +50,4 @@ If you prefer to build the project from the source, please follow these steps:
    pip install -r requirements.txt
 5. **Run the Application: Finally, run the application using the following command:**
    ```bash
-   python.exe mainwindow.py
+   python.exe main.py
