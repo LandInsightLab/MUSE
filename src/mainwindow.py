@@ -24,9 +24,6 @@
 
 import sys, os, pickle
 import pandas as pd
-current_dir = os.path.dirname(os.path.abspath(__file__))
-parent_dir = os.path.join(current_dir, '..')  
-sys.path.append(parent_dir)
 import configparser
 import logging
 from libs import MUSE_API
@@ -34,7 +31,6 @@ from libs.CheckTifDimensions import CheckTifDimensions, CountDistinctIntegers
 from UDSA import UDSA_Dialog
 from PSSA import PSSA_Dialog
 from POT import POT_Widget
-from PySide6 import QtWidgets
 from PySide6.QtWidgets import QFileDialog, QMainWindow, QWidget, QMessageBox, QDialog
 from PySide6.QtCore import QSettings, QPropertyAnimation, Qt, Signal, QThread, QUrl
 from PySide6.QtGui import QPainter, QColor, QDesktopServices
@@ -1124,10 +1120,3 @@ class MainWindow(QMainWindow):
         self.pst_widget.close()
         self.mgot_widget.close()
         event.accept()
-
-
-if __name__ == '__main__':
-    app = QtWidgets.QApplication(sys.argv)
-    win = MainWindow()
-    win.show()
-    app.exit(app.exec())
