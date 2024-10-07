@@ -22,22 +22,20 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-import sys
 from PySide6.QtWidgets import QApplication, QSplashScreen
 from PySide6.QtGui import QPixmap
 from src.mainwindow import MainWindow  # Import MainWindow from src
 
 if __name__ == "__main__":
-    app = QApplication(sys.argv)
+    app = QApplication([])
 
     splash_pix = QPixmap(":/png/loading.png")
     splash = QSplashScreen(splash_pix)
     splash.show()
 
     window = MainWindow()
-
+    
     splash.finish(window) 
-
     window.show()
-    sys.exit(app.exec())
+    app.exec()
 

@@ -22,7 +22,6 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-import sys
 import numpy as np
 import pandas as pd
 
@@ -642,10 +641,3 @@ class PSSA_Dialog(QWidget):
             self.worker_thread.wait()
         self.gfw.close()
         event.accept()
-
-
-if __name__ == "__main__":
-    app = QApplication(sys.argv)
-    widget = PSSA_Dialog()
-    widget.show()
-    sys.exit(app.exec())

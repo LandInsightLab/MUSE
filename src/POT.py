@@ -27,16 +27,9 @@ import numpy as np
 
 from PySide6.QtWidgets import QWidget, QTextBrowser
 from PySide6.QtCore import QThread, Signal
-from pymoo.core.problem import Problem
-from pymoo.algorithms.soo.nonconvex.ga import GA
-from pymoo.algorithms.soo.nonconvex.de import DE
-from pymoo.algorithms.soo.nonconvex.pso import PSO
-from pymoo.algorithms.soo.nonconvex.pattern import PatternSearch
-from pymoo.algorithms.moo.nsga2 import NSGA2
-from pymoo.optimize import minimize
 from multiprocessing.pool import ThreadPool
 from multiprocessing import cpu_count
-
+from pymoo.core.problem import Problem
 from libs import MUSE_API_GA
 
 from resources.ui.POT_ui import Ui_POT
@@ -57,6 +50,12 @@ class GAThread(QThread):
         self.opimision_parameters = opimision_parameters
 
     def run(self):
+        from pymoo.algorithms.soo.nonconvex.ga import GA
+        from pymoo.algorithms.soo.nonconvex.de import DE
+        from pymoo.algorithms.soo.nonconvex.pso import PSO
+        from pymoo.algorithms.soo.nonconvex.pattern import PatternSearch
+        from pymoo.algorithms.moo.nsga2 import NSGA2
+        from pymoo.optimize import minimize
         try:
             muse_problem = MyProblem(pool=self.pool, ga_muse_parameters=self.ga_muse_parameters, var=self.var, xl=self.xl, 
                                      xu=self.xu, opimision_parameters=self.opimision_parameters ,show_messagge=self.show_mesg)
@@ -193,6 +192,9 @@ class POT_Widget(QWidget, Ui_POT):
         super().__init__()
         self.ui = Ui_POT()
         self.ui.setupUi(self)  # Set up the UI
+
+        # load_modules()
+
         self.setWindowTitle("Parameter Optimization Tool (POT) module")  # Set window title
         self.ga_thread = None
         self.pool = None

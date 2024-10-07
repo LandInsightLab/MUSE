@@ -22,7 +22,6 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-import sys
 import numpy as np
 
 from pathlib import Path
@@ -845,10 +844,3 @@ class UDSA_Dialog(QWidget):
                 thread.wait()
 
         event.accept()
-   
-
-if __name__ == "__main__":
-    app = QApplication(sys.argv)
-    window = UDSA_Dialog()
-    window.show()
-    sys.exit(app.exec())

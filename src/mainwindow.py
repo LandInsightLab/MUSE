@@ -22,25 +22,36 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-import pickle
-import pandas as pd
-import configparser
-import logging
 
-from PySide6.QtWidgets import QFileDialog, QMainWindow, QWidget, QMessageBox, QDialog
-from PySide6.QtCore import QSettings, QPropertyAnimation, Qt, Signal, QThread, QUrl
-from PySide6.QtGui import QPainter, QColor, QDesktopServices
-from pathlib import Path
+def load_large_modules():
+    global pd, pickle, configparser, logging
+    global QFileDialog, QMessageBox, QDesktopServices, QPainter, QColor
+    global QUrl, QSettings, QPropertyAnimation, Qt
+    global MUSE_API, CheckTifDimensions
+    global UDSA_Dialog, PSSA_Dialog
+    global Ui_MainWindow
+    global Path
+    
+    import pandas as pd
+    import pickle
+    import configparser
+    import logging
 
-from libs import MUSE_API
-from libs import CheckTifDimensions
+    from PySide6.QtWidgets import QFileDialog, QMessageBox
+    from PySide6.QtGui import QDesktopServices, QPainter, QColor
+    from PySide6.QtCore import QUrl, QSettings, QPropertyAnimation, Qt
+    from libs import MUSE_API, CheckTifDimensions
+    from src.UDSA import UDSA_Dialog
+    from src.PSSA import PSSA_Dialog
 
-from src.UDSA import UDSA_Dialog
-from src.PSSA import PSSA_Dialog
+    from resources.ui.mainwindow_ui import Ui_MainWindow
+    from pathlib import Path
+
 from src.POT import POT_Widget
-
-from resources.ui.mainwindow_ui import Ui_MainWindow
+from PySide6.QtWidgets import QDialog, QWidget, QMainWindow
+from PySide6.QtCore import Signal, QThread
 from resources.ui.aboutus_ui import Ui_AboutUs
+
 
 class AboutDialog(QDialog):
     def __init__(self):
@@ -131,8 +142,10 @@ class SlipButton(QWidget):
 class MainWindow(QMainWindow):
     def __init__(self, parent=None):
         super().__init__(parent)
+        load_large_modules()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
+        
         self.mlcs_widget = UDSA_Dialog()
         self.pst_widget = PSSA_Dialog()
         self.mgot_widget = POT_Widget()
