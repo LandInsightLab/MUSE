@@ -23,23 +23,21 @@
 # SOFTWARE.
 
 import sys
-import os
-from PySide6.QtWidgets import QApplication
+from PySide6.QtWidgets import QApplication, QSplashScreen
+from PySide6.QtGui import QPixmap
+from src.mainwindow import MainWindow  # Import MainWindow from src
 
 if __name__ == "__main__":
-    current_dir = os.path.dirname(os.path.abspath(__file__))
-    # Add libs and resources directories
-    libs_dir = os.path.join(current_dir, 'libs')
-    resources_dir = os.path.join(current_dir, 'resources')
-    src_dir = os.path.join(current_dir, 'src')  # Add src directory
-
-    sys.path.append(libs_dir)
-    sys.path.append(resources_dir)
-    sys.path.append(src_dir)  # Add src directory
-
-    from src.mainwindow import MainWindow  # Import MainWindow from src
-
     app = QApplication(sys.argv)
+
+    splash_pix = QPixmap(":/png/loading.png")
+    splash = QSplashScreen(splash_pix)
+    splash.show()
+
     window = MainWindow()
+
+    splash.finish(window) 
+
     window.show()
     sys.exit(app.exec())
+

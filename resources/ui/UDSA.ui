@@ -98,8 +98,8 @@
                    <string/>
                   </property>
                   <property name="icon">
-                   <iconset resource="res.qrc">
-                    <normaloff>:/resources/add.svg</normaloff>:/resources/add.svg</iconset>
+                   <iconset resource="../qrc/res.qrc">
+                    <normaloff>:/svg/add.svg</normaloff>:/svg/add.svg</iconset>
                   </property>
                   <property name="iconSize">
                    <size>
@@ -115,8 +115,8 @@
                    <string/>
                   </property>
                   <property name="icon">
-                   <iconset resource="res.qrc">
-                    <normaloff>:/resources/del.svg</normaloff>:/resources/del.svg</iconset>
+                   <iconset resource="../qrc/res.qrc">
+                    <normaloff>:/svg/del.svg</normaloff>:/svg/del.svg</iconset>
                   </property>
                   <property name="iconSize">
                    <size>
@@ -590,7 +590,7 @@
        </item>
       </layout>
      </widget>
-     <widget class="CustomTextBrowser" name="textBrowser_06_output">
+     <widget class="MyTextBrowser" name="textBrowser_06_output">
       <property name="maximumSize">
        <size>
         <width>16777215</width>
@@ -614,13 +614,13 @@ li.checked::marker { content: &quot;\2612&quot;; }
  </widget>
  <customwidgets>
   <customwidget>
-   <class>CustomTextBrowser</class>
+   <class>MyTextBrowser</class>
    <extends>QTextBrowser</extends>
-   <header>mytextbrowser</header>
+   <header>src.mytextbrowser</header>
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="res.qrc"/>
+  <include location="../qrc/res.qrc"/>
  </resources>
  <connections/>
 </ui>

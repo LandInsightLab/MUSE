@@ -207,8 +207,8 @@ QPushButton:hover { background-color: rgb(236, 236, 236); }</string>
                       <string/>
                      </property>
                      <property name="icon">
-                      <iconset resource="res.qrc">
-                       <normaloff>:/resources/remove.svg</normaloff>:/resources/remove.svg</iconset>
+                      <iconset resource="../qrc/res.qrc">
+                       <normaloff>:/svg/remove.svg</normaloff>:/svg/remove.svg</iconset>
                      </property>
                      <property name="iconSize">
                       <size>
@@ -224,8 +224,8 @@ QPushButton:hover { background-color: rgb(236, 236, 236); }</string>
                       <string/>
                      </property>
                      <property name="icon">
-                      <iconset resource="res.qrc">
-                       <normaloff>:/resources/up.svg</normaloff>:/resources/up.svg</iconset>
+                      <iconset resource="../qrc/res.qrc">
+                       <normaloff>:/svg/up.svg</normaloff>:/svg/up.svg</iconset>
                      </property>
                      <property name="iconSize">
                       <size>
@@ -241,8 +241,8 @@ QPushButton:hover { background-color: rgb(236, 236, 236); }</string>
                       <string/>
                      </property>
                      <property name="icon">
-                      <iconset resource="res.qrc">
-                       <normaloff>:/resources/down.svg</normaloff>:/resources/down.svg</iconset>
+                      <iconset resource="../qrc/res.qrc">
+                       <normaloff>:/svg/down.svg</normaloff>:/svg/down.svg</iconset>
                      </property>
                      <property name="iconSize">
                       <size>
@@ -258,8 +258,8 @@ QPushButton:hover { background-color: rgb(236, 236, 236); }</string>
                       <string/>
                      </property>
                      <property name="icon">
-                      <iconset resource="res.qrc">
-                       <normaloff>:/resources/check.svg</normaloff>:/resources/check.svg</iconset>
+                      <iconset resource="../qrc/res.qrc">
+                       <normaloff>:/svg/check.svg</normaloff>:/svg/check.svg</iconset>
                      </property>
                      <property name="iconSize">
                       <size>
@@ -709,7 +709,7 @@ QPushButton:hover { background-color: rgb(236, 236, 236); }</string>
         <number>0</number>
        </property>
        <item>
-        <widget class="CustomTextBrowser" name="textBrowser"/>
+        <widget class="MyTextBrowser" name="textBrowser"/>
        </item>
        <item>
         <widget class="QWidget" name="widget" native="true"/>
@@ -722,13 +722,13 @@ QPushButton:hover { background-color: rgb(236, 236, 236); }</string>
  </widget>
  <customwidgets>
   <customwidget>
-   <class>CustomTextBrowser</class>
+   <class>MyTextBrowser</class>
    <extends>QTextBrowser</extends>
-   <header>mytextbrowser</header>
+   <header>src.mytextbrowser</header>
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="res.qrc"/>
+  <include location="../qrc/res.qrc"/>
  </resources>
  <connections/>
 </ui>

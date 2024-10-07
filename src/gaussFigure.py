@@ -1,4 +1,5 @@
-from gaussFigure_ui import Ui_GaussFigureWidget
+from resources.ui.gaussFigure_ui import Ui_GaussFigureWidget
+
 from PySide6 import QtWidgets
 from PySide6.QtWidgets import QWidget, QVBoxLayout
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas

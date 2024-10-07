@@ -22,26 +22,26 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-import os, sys
-from PySide6 import QtWidgets
-from PySide6.QtWidgets import QWidget, QFileDialog, QTableWidgetItem, QHeaderView, QMessageBox, QApplication
-from PySide6.QtCore import QSettings, Qt, QTimer, QThread, Signal
-from PySide6 import QtGui
-from PSSA_ui import Ui_PSSA
-
-from libs.PatchStatistics import PatchStatistics, ErrorCode
-from libs.CheckTifDimensions import CheckTifDimensions
-
+import sys
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
-from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
+
+from PySide6.QtWidgets import QWidget, QFileDialog, QTableWidgetItem, QHeaderView, QMessageBox, QApplication
+from PySide6.QtCore import QSettings, Qt, QThread, Signal
+from PySide6 import QtGui
 from matplotlib.figure import Figure
 from scipy.optimize import curve_fit, differential_evolution
-from scipy.stats import lognorm, powerlaw
-from gaussFigure_ui import Ui_GaussFigureWidget
+from scipy.stats import powerlaw
+from pathlib import Path
+
 from libs import RingAndArea
-from gaussFigure import GaussFigure
+from libs import PatchStatistics
+from libs import CheckTifDimensions
+
+from src.gaussFigure import GaussFigure
+
+from resources.ui.PSSA_ui import Ui_PSSA
+
 
 buffer_spacing = 10
 # Define a mapping from ErrorCode values to error messages
@@ -98,11 +98,11 @@ class WorkerThread(QThread):
     def run(self):
         try:
             self.send_message.emit("Creating PatchStatistics instance...")
-            patch_statistics = PatchStatistics(self.file_paths, self.neighbor_type)
+            patch_statistics = PatchStatistics.PatchStatistics(self.file_paths, self.neighbor_type)
 
             self.send_message.emit("Calculating patch properties...")
             error_code = patch_statistics.calculate_patch_properties()
-            if (error_code != ErrorCode.Success):
+            if (error_code != PatchStatistics.ErrorCode.Success):
                 raise RuntimeError(get_error_message(error_code))
             patches = patch_statistics.getPatches()
             self.send_message.emit("Patch properties calculated successfully.")
@@ -110,7 +110,7 @@ class WorkerThread(QThread):
             if (self.out):
                 self.send_message.emit("Writing labels to TIFF file...")
                 error_code = patch_statistics.writeLabelsToTif(self.output_folder)
-                if (error_code != ErrorCode.Success):
+                if (error_code != PatchStatistics.ErrorCode.Success):
                     raise RuntimeError(get_error_message(error_code))
                 self.write_patches_to_csv(patches)
                 self.send_message.emit("Labels written to TIFF file and CSV file created.")
@@ -512,13 +512,13 @@ class PSSA_Dialog(QWidget):
         file_paths = [self.ui.table_02_input_show.item(row, 1).text() for row in range(row_count)]
 
         for file_path in file_paths:
-            if not os.path.exists(file_path):
+            if not Path(file_path).exists():
                 self.show_error_message(f"File does not exist: {file_path}")
                 self.set_success(0)
                 return
 
         try:
-            if (not CheckTifDimensions(file_paths)):
+            if (not CheckTifDimensions.CheckTifDimensions(file_paths)):
                 self.show_error_message("All TIF files must have the same shape (rows and columns).")
                 self.set_success(0)
                 return
@@ -532,7 +532,7 @@ class PSSA_Dialog(QWidget):
                     self.set_success(0)
                     return
 
-                if not os.path.exists(folder_path):
+                if not Path(folder_path).exists():
                     response = QMessageBox.question(
                         self,
                         "Create Folder",
@@ -540,7 +540,7 @@ class PSSA_Dialog(QWidget):
                         QMessageBox.Yes | QMessageBox.No
                     )
                     if response == QMessageBox.Yes:
-                        os.makedirs(folder_path)
+                        Path(folder_path).mkdir(parents=True, exist_ok=True)  # 创建文件夹
                     else:
                         self.set_success(0)
                         return
@@ -559,16 +559,16 @@ class PSSA_Dialog(QWidget):
         
         row_count = self.ui.table_02_input_show.rowCount()
         file_path = self.ui.lineEdit_04_save_location.text()
-        # Generate paths
+        
         paths = []
-        for i in range(row_count-1):
-            path_tif = os.path.join(file_path, f"patch_index_{i+1}-{i+2}.tif")
+        for i in range(row_count - 1):
+            path_tif = Path(file_path) / f"patch_index_{i + 1}-{i + 2}.tif"
             paths.append(path_tif)
-        paths.append(os.path.join(file_path, "patch_sizes.csv"))
+        paths.append(Path(file_path) / "patch_sizes.csv")
 
         files_to_overwrite = []
         for path in paths:
-            if os.path.exists(path):
+            if path.exists():
                 files_to_overwrite.append(path)
 
         # Prompt the user
@@ -628,12 +628,13 @@ class PSSA_Dialog(QWidget):
 
     def set_success(self, success):
         if success:
-            icon_path = ":/resources/successfully_checked.svg"  # Using the :/ prefix to reference the resource
+            icon_path = ":/svg/successfully_checked.svg"  # Correct resource path
             self.ui.Button_02_check.setIcon(QtGui.QIcon(icon_path))
             self.can_run = True
         else:
-            icon_path = ":/resources/failed_check.svg"
+            icon_path = ":/svg/failed_check.svg"  # This seems like the same icon, adjust if needed
             self.ui.Button_02_check.setIcon(QtGui.QIcon(icon_path))
+
     
     def closeEvent(self, event):
         if self.worker_thread and self.worker_thread.isRunning():

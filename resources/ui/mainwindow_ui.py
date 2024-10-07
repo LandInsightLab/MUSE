@@ -23,7 +23,8 @@ from PySide6.QtWidgets import (QAbstractSpinBox, QApplication, QCheckBox, QCombo
     QPushButton, QSizePolicy, QSpinBox, QSplitter,
     QStatusBar, QToolButton, QVBoxLayout, QWidget)
 
-from mytextbrowser import CustomTextBrowser
+from src.mytextbrowser import MyTextBrowser
+import resources.qrc.res_rc
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -35,7 +36,7 @@ class Ui_MainWindow(object):
         font.setBold(False)
         MainWindow.setFont(font)
         icon = QIcon()
-        icon.addFile(u":/resources/MUSE.ico", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        icon.addFile(u":/ico/MUSE.ico", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         MainWindow.setWindowIcon(icon)
         self.actionnewFile = QAction(MainWindow)
         self.actionnewFile.setObjectName(u"actionnewFile")
@@ -880,7 +881,7 @@ class Ui_MainWindow(object):
         self.verticalLayout.addWidget(self.box_06_run_and_export)
 
         self.splitter.addWidget(self.frame_20)
-        self.textBrowser = CustomTextBrowser(self.splitter)
+        self.textBrowser = MyTextBrowser(self.splitter)
         self.textBrowser.setObjectName(u"textBrowser")
         self.splitter.addWidget(self.textBrowser)
 

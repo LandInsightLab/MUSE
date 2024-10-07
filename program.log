@@ -3,3 +3,4 @@
 2024-10-07 01:50:14,836 - ERROR - Error while loading config file: Config file ./config.ini not found.
 2024-10-07 01:50:20,192 - ERROR - Error while setting language to English: 'Settings'
 2024-10-07 01:51:02,217 - ERROR - Error while loading config file: Config file ./config.ini not found.
+2024-10-07 20:19:57,012 - ERROR - Failed to open the file: Guide_ENG.pdf

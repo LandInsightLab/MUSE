@@ -21,8 +21,8 @@ from PySide6.QtWidgets import (QApplication, QCheckBox, QComboBox, QFrame,
     QSplitter, QTableWidget, QTableWidgetItem, QToolButton,
     QVBoxLayout, QWidget)
 
-from mytextbrowser import CustomTextBrowser
-import res_rc
+from src.mytextbrowser import MyTextBrowser
+import resources.qrc.res_rc
 
 class Ui_UDSA(object):
     def setupUi(self, UDSA):
@@ -75,7 +75,7 @@ class Ui_UDSA(object):
         self.button_01_add.setMinimumSize(QSize(50, 0))
         self.button_01_add.setMaximumSize(QSize(16777215, 16777215))
         icon = QIcon()
-        icon.addFile(u":/resources/add.svg", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        icon.addFile(u":/svg/add.svg", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         self.button_01_add.setIcon(icon)
         self.button_01_add.setIconSize(QSize(16, 16))
 
@@ -84,7 +84,7 @@ class Ui_UDSA(object):
         self.button_01_del = QPushButton(self.frame_5)
         self.button_01_del.setObjectName(u"button_01_del")
         icon1 = QIcon()
-        icon1.addFile(u":/resources/del.svg", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        icon1.addFile(u":/svg/del.svg", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         self.button_01_del.setIcon(icon1)
         self.button_01_del.setIconSize(QSize(13, 13))
 
@@ -420,7 +420,7 @@ class Ui_UDSA(object):
         self.verticalLayout_3.addWidget(self.frame_19)
 
         self.splitter.addWidget(self.frame_2)
-        self.textBrowser_06_output = CustomTextBrowser(self.splitter)
+        self.textBrowser_06_output = MyTextBrowser(self.splitter)
         self.textBrowser_06_output.setObjectName(u"textBrowser_06_output")
         self.textBrowser_06_output.setMaximumSize(QSize(16777215, 16777215))
         self.splitter.addWidget(self.textBrowser_06_output)

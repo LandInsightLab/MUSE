@@ -20,7 +20,7 @@ from PySide6.QtWidgets import (QApplication, QCheckBox, QComboBox, QFrame,
     QPushButton, QSizePolicy, QSpinBox, QSplitter,
     QVBoxLayout, QWidget)
 
-from mytextbrowser import CustomTextBrowser
+from src.mytextbrowser import MyTextBrowser
 
 class Ui_POT(object):
     def setupUi(self, POT):
@@ -164,7 +164,7 @@ class Ui_POT(object):
         self.horizontalLayout.addLayout(self.verticalLayout)
 
         self.splitter.addWidget(self.frame_3)
-        self.textBrowser = CustomTextBrowser(self.splitter)
+        self.textBrowser = MyTextBrowser(self.splitter)
         self.textBrowser.setObjectName(u"textBrowser")
         self.splitter.addWidget(self.textBrowser)
 

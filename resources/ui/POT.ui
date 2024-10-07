@@ -230,16 +230,16 @@
        </item>
       </layout>
      </widget>
-     <widget class="CustomTextBrowser" name="textBrowser"/>
+     <widget class="MyTextBrowser" name="textBrowser"/>
     </widget>
    </item>
   </layout>
  </widget>
  <customwidgets>
   <customwidget>
-   <class>CustomTextBrowser</class>
+   <class>MyTextBrowser</class>
    <extends>QTextBrowser</extends>
-   <header>mytextbrowser</header>
+   <header>src.mytextbrowser</header>
   </customwidget>
  </customwidgets>
  <resources/>

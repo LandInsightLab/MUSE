@@ -22,21 +22,25 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-import sys, os, pickle
+import pickle
 import pandas as pd
 import configparser
 import logging
-from libs import MUSE_API
-from libs.CheckTifDimensions import CheckTifDimensions, CountDistinctIntegers
-from UDSA import UDSA_Dialog
-from PSSA import PSSA_Dialog
-from POT import POT_Widget
+
 from PySide6.QtWidgets import QFileDialog, QMainWindow, QWidget, QMessageBox, QDialog
 from PySide6.QtCore import QSettings, QPropertyAnimation, Qt, Signal, QThread, QUrl
 from PySide6.QtGui import QPainter, QColor, QDesktopServices
-from mainwindow_ui import Ui_MainWindow
-from aboutus_ui import Ui_AboutUs
+from pathlib import Path
 
+from libs import MUSE_API
+from libs import CheckTifDimensions
+
+from src.UDSA import UDSA_Dialog
+from src.PSSA import PSSA_Dialog
+from src.POT import POT_Widget
+
+from resources.ui.mainwindow_ui import Ui_MainWindow
+from resources.ui.aboutus_ui import Ui_AboutUs
 
 class AboutDialog(QDialog):
     def __init__(self):
@@ -223,7 +227,7 @@ class MainWindow(QMainWindow):
     def load_config(self):
         """Load the config file and check the Language item"""
         try:
-            if not os.path.exists(self.config_file):
+            if not Path(self.config_file).exists():
                 raise FileNotFoundError(f"Config file {self.config_file} not found.")
             
             self.config.read(self.config_file)
@@ -837,7 +841,7 @@ class MainWindow(QMainWindow):
 
     # 06 Results and performance
     def check_addresses(self, paths):
-        invalid_files = [index + 1 for index, path in enumerate(paths) if not os.path.isfile(path)]
+        invalid_files = [index + 1 for index, path in enumerate(paths) if not Path(path).is_file()]
         if invalid_files:
             error_message = f"The following fields contain invalid or non-existent files: {', '.join(map(str, invalid_files))}"
             self.show_message(error_message, "error")
@@ -845,7 +849,7 @@ class MainWindow(QMainWindow):
         return True
     
     def check_tif_values(self, file_path):
-        distinct_count = CountDistinctIntegers(file_path)
+        distinct_count = CheckTifDimensions.CountDistinctIntegers(file_path)
         if distinct_count == -1:
             self.show_message("MUSE software only supports single-band TIFFs for now. {file_path}")
             return False
@@ -926,7 +930,7 @@ class MainWindow(QMainWindow):
             if not (file_path.lower().endswith('.tif') or file_path.lower().endswith('.tiff')):
                 self.show_message(f"File is not a .tif or .tiff file: {file_path}")
                 return False
-            if not os.path.exists(file_path):
+            if not Path(file_path).exists():
                 self.show_message(f"File does not exist: {file_path}")
                 return False
             
@@ -934,11 +938,11 @@ class MainWindow(QMainWindow):
             if not file_path.lower().endswith('.csv'):
                 self.show_message(f"File is not a .csv file: {file_path}")
                 return False
-            if not os.path.exists(file_path):
+            if not Path(file_path).exists():
                 self.show_message(f"File does not exist: {file_path}")
                 return False
 
-        if not CheckTifDimensions(file_paths_tif):
+        if not CheckTifDimensions.CheckTifDimensions(file_paths_tif):
             self.show_message("All TIF files must have the same number of rows and columns.")
             return False
         
@@ -977,7 +981,7 @@ class MainWindow(QMainWindow):
                 if not shape_parameters_path.lower().endswith('.csv'):
                     self.show_message(f"File is not a .csv file: {file_path}")
                     return False
-                if not os.path.exists(file_path):
+                if not Path(file_path).exists():
                     self.show_message(f"File does not exist: {file_path}")
                     return False
                 if not self.check_csv_file(shape_parameters_path, 5, 5):

@@ -22,15 +22,11 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-import os
 import threading
 import numpy as np
 
-from libs import MUSE_API_GA
-
 from PySide6.QtWidgets import QWidget, QTextBrowser
 from PySide6.QtCore import QThread, Signal
-from POT_ui import Ui_POT
 from pymoo.core.problem import Problem
 from pymoo.algorithms.soo.nonconvex.ga import GA
 from pymoo.algorithms.soo.nonconvex.de import DE
@@ -39,6 +35,11 @@ from pymoo.algorithms.soo.nonconvex.pattern import PatternSearch
 from pymoo.algorithms.moo.nsga2 import NSGA2
 from pymoo.optimize import minimize
 from multiprocessing.pool import ThreadPool
+from multiprocessing import cpu_count
+
+from libs import MUSE_API_GA
+
+from resources.ui.POT_ui import Ui_POT
 
 class GAThread(QThread):
     progress = Signal(str)
@@ -222,7 +223,7 @@ class POT_Widget(QWidget, Ui_POT):
             self.ui.comboBox_00_algorithms.addItem(f"{name}")
 
     def set_default_parameters(self):
-        num_cores = os.cpu_count()
+        num_cores = cpu_count()
         self.ui.spinBox_01_thread_count.setMaximum(num_cores)
 
     def set_weight_for_gauss(self, is_sliped):

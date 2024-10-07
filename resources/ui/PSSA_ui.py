@@ -20,8 +20,8 @@ from PySide6.QtWidgets import (QApplication, QCheckBox, QComboBox, QFrame,
     QPushButton, QSizePolicy, QSplitter, QTableWidget,
     QTableWidgetItem, QToolButton, QVBoxLayout, QWidget)
 
-from mytextbrowser import CustomTextBrowser
-import res_rc
+from src.mytextbrowser import MyTextBrowser
+import resources.qrc.res_rc
 
 class Ui_PSSA(object):
     def setupUi(self, PSSA):
@@ -115,7 +115,7 @@ class Ui_PSSA(object):
         self.Button_02_remove = QPushButton(self.frame_02_button)
         self.Button_02_remove.setObjectName(u"Button_02_remove")
         icon = QIcon()
-        icon.addFile(u":/resources/remove.svg", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        icon.addFile(u":/svg/remove.svg", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         self.Button_02_remove.setIcon(icon)
         self.Button_02_remove.setIconSize(QSize(32, 32))
 
@@ -124,7 +124,7 @@ class Ui_PSSA(object):
         self.Button_02_up = QPushButton(self.frame_02_button)
         self.Button_02_up.setObjectName(u"Button_02_up")
         icon1 = QIcon()
-        icon1.addFile(u":/resources/up.svg", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        icon1.addFile(u":/svg/up.svg", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         self.Button_02_up.setIcon(icon1)
         self.Button_02_up.setIconSize(QSize(32, 32))
 
@@ -133,7 +133,7 @@ class Ui_PSSA(object):
         self.Button_02_down = QPushButton(self.frame_02_button)
         self.Button_02_down.setObjectName(u"Button_02_down")
         icon2 = QIcon()
-        icon2.addFile(u":/resources/down.svg", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        icon2.addFile(u":/svg/down.svg", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         self.Button_02_down.setIcon(icon2)
         self.Button_02_down.setIconSize(QSize(32, 32))
 
@@ -142,7 +142,7 @@ class Ui_PSSA(object):
         self.Button_02_check = QPushButton(self.frame_02_button)
         self.Button_02_check.setObjectName(u"Button_02_check")
         icon3 = QIcon()
-        icon3.addFile(u":/resources/check.svg", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        icon3.addFile(u":/svg/check.svg", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         self.Button_02_check.setIcon(icon3)
         self.Button_02_check.setIconSize(QSize(32, 32))
         self.Button_02_check.setCheckable(False)
@@ -415,7 +415,7 @@ class Ui_PSSA(object):
         self.verticalLayout_6.setSpacing(0)
         self.verticalLayout_6.setObjectName(u"verticalLayout_6")
         self.verticalLayout_6.setContentsMargins(0, 0, 0, 0)
-        self.textBrowser = CustomTextBrowser(self.frame_07_output)
+        self.textBrowser = MyTextBrowser(self.frame_07_output)
         self.textBrowser.setObjectName(u"textBrowser")
 
         self.verticalLayout_6.addWidget(self.textBrowser)

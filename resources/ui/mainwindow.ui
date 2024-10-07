@@ -20,8 +20,8 @@
    <string>Multi-engine Urban Expansion Simulator（MUSE）V1.0.0</string>
   </property>
   <property name="windowIcon">
-   <iconset>
-    <normaloff>:/resources/MUSE.ico</normaloff>:/resources/MUSE.ico</iconset>
+   <iconset resource="../qrc/res.qrc">
+    <normaloff>:/ico/MUSE.ico</normaloff>:/ico/MUSE.ico</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
    <property name="styleSheet">
@@ -1287,7 +1287,7 @@
         </item>
        </layout>
       </widget>
-      <widget class="CustomTextBrowser" name="textBrowser"/>
+      <widget class="MyTextBrowser" name="textBrowser"/>
      </widget>
     </item>
     <item>
@@ -1460,9 +1460,9 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>CustomTextBrowser</class>
+   <class>MyTextBrowser</class>
    <extends>QTextBrowser</extends>
-   <header>mytextbrowser</header>
+   <header>src.mytextbrowser</header>
   </customwidget>
  </customwidgets>
  <tabstops>
@@ -1491,6 +1491,8 @@
   <tabstop>btn_06_save</tabstop>
   <tabstop>textBrowser</tabstop>
  </tabstops>
- <resources/>
+ <resources>
+  <include location="../qrc/res.qrc"/>
+ </resources>
  <connections/>
 </ui>

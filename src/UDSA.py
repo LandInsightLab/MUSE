@@ -22,15 +22,13 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-import sys, os
+import sys
 import numpy as np
 
-from libs.CheckTifDimensions import CheckTifDimensions, CountDistinctIntegers
-from libs.CreateData import SampleDataGenerator, TestDataGenerator, DataToTif
-
+from pathlib import Path
+from multiprocessing import cpu_count
 from PySide6.QtWidgets import QApplication, QWidget, QFileDialog, QTableWidgetItem, QMessageBox
 from PySide6.QtCore import QSettings, QTimer, Signal, QThread
-from UDSA_ui import Ui_UDSA
 from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.linear_model import LogisticRegression
 from sklearn.svm import SVC
@@ -41,6 +39,11 @@ from sklearn.model_selection import cross_val_score
 from sklearn.metrics import accuracy_score
 from sklearn.metrics import classification_report, confusion_matrix
 import xgboost as xgb
+
+from libs import CheckTifDimensions
+from libs import CreateData
+
+from resources.ui.UDSA_ui import Ui_UDSA
 
 # Predefined model classes and parameter grids
 model_classes = {
@@ -97,7 +100,7 @@ class SampleFetcher(QThread):
         paths = self.file_paths + [self.input_file_path]
 
         # Generate samples
-        samples_generator = SampleDataGenerator()
+        samples_generator = CreateData.SampleDataGenerator()
         self.progress.emit("Generating random samples...")
 
         samples = samples_generator.readRandomSamples(paths, self.sample_size)
@@ -105,7 +108,7 @@ class SampleFetcher(QThread):
 
         # If save path is specified, determine file type and save samples
         if self.csv_path:
-            file_extension = os.path.splitext(self.csv_path)[1].lower()
+            file_extension = Path(self.csv_path).suffix.lower()
             
             samples_generator.saveToCSV(self.file_paths, self.csv_path)
             self.progress.emit(f"Samples saved to {file_extension} at {self.csv_path}.")
@@ -248,7 +251,7 @@ class ModelPredictor(QThread):
     def run(self):
         try:
             self.progress.emit("Starting to fetch test data...")
-            test_generator = TestDataGenerator()
+            test_generator = CreateData.TestDataGenerator()
             X_new = test_generator.readTestData(self.test_paths)
             coor = test_generator.getCoor()
             self.progress.emit("Test data fetching completed.")
@@ -262,7 +265,7 @@ class ModelPredictor(QThread):
             probabilities = (probabilities - min_prob) / (max_prob - min_prob)
             
             combined_data = np.hstack((coor, probabilities.reshape(-1, 1)))
-            message = DataToTif(combined_data, self.save_path, self.test_paths[0])
+            message = CreateData.DataToTif(combined_data, self.save_path, self.test_paths[0])
             self.progress.emit(message)
         except Exception as e:
             error_msg = f"Error occurred during data prediction: {str(e)}"
@@ -317,7 +320,7 @@ class UDSA_Dialog(QWidget):
         self.ui.lineEdit_03_sample_ratio.setText('0.2')
 
         # Set checkBox_03_cv and lineEdit_03_cv default states
-        max_threads = os.cpu_count()
+        max_threads = cpu_count()
         self.ui.spinBox_03_thread.setMaximum(max_threads)
         self.ui.spinBox_03_thread.setValue(max_threads)  # Optionally set the current value to the max threads
         self.ui.spinBox_03_cv.setVisible(False)
@@ -506,7 +509,7 @@ class UDSA_Dialog(QWidget):
                 if not file_path.endswith('.tif'):
                     self.show_message(f"Invalid file format: {file_path}. All files must be in .tif format.", "error")
                     return False
-                if not os.path.exists(file_path):
+                if not Path(file_path).exists():
                     self.show_message(f"Feature file not found: {file_path}. Please ensure all files are in .tif format.", "error")
                     return False
                 file_paths.append(file_path)
@@ -521,16 +524,16 @@ class UDSA_Dialog(QWidget):
         if not input_file_path.endswith('.tif'):
             self.show_message(f"Invalid file format: {input_file_path}. The file must be in .tif format.", "error")
             return False
-        if not os.path.exists(input_file_path):
+        if not Path(input_file_path).exists():
             self.show_message(f"Label file not found: {input_file_path}. Please ensure the file is in .tif format.", "error")
             return False
         file_paths.append(input_file_path)
 
-        if not CheckTifDimensions(file_paths):
+        if not CheckTifDimensions.CheckTifDimensions(file_paths):
             self.show_message("All TIF files must have the same shape (rows and columns).", "error")
             return False
 
-        count_distinct_integers = CountDistinctIntegers(input_file_path)
+        count_distinct_integers = CheckTifDimensions.CountDistinctIntegers(input_file_path)
         if count_distinct_integers == 0:
             self.show_message("The label file must be of discrete type with exactly two distinct values: 0 and 1.", "error")
             return False
@@ -565,8 +568,8 @@ class UDSA_Dialog(QWidget):
                 return False
             
             # Check if directory exists
-            directory = os.path.dirname(save_path)
-            if not os.path.exists(directory):
+            directory = Path(save_path).parent
+            if not directory.exists():
                 self.show_message(f"Directory does not exist: {directory}. Please provide a valid save path.", "error")
                 return False
         
@@ -821,8 +824,8 @@ class UDSA_Dialog(QWidget):
             return False
         
         # Check if directory exists
-        directory = os.path.dirname(save_path)
-        if not os.path.exists(directory):
+        directory = Path(save_path).parent
+        if not directory.exists():
             self.show_message(f"Directory does not exist: {directory}. Please provide a valid save path.", "error")
             return False
         self.model_predictor_thread = ModelPredictor(self.trained_model, self.test_paths, save_path)

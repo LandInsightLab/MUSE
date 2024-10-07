@@ -1,10 +1,9 @@
-from PySide6.QtWidgets import QApplication, QTextBrowser, QMenu
+from PySide6.QtWidgets import QTextBrowser, QMenu
 from PySide6.QtGui import QAction
 from PySide6.QtCore import Qt
 
 
-
-class CustomTextBrowser(QTextBrowser):
+class MyTextBrowser(QTextBrowser):
     def __init__(self, message):
         super().__init__()
         self.setContextMenuPolicy(Qt.CustomContextMenu)
