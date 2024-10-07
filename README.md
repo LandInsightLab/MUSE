@@ -32,7 +32,7 @@ With MUSE, users gain the capability to create diverse spatial patterns for urba
 
 ## Quick Installation
 
-If you want to quickly use the software, you can download the release package from the following link: [Installation Link](xxx).
+If you want to quickly use the software, you can download the release package from the following link: [Installation Link](https://github.com/LandInsightLab/MUSE/releases/tag/v2.0.0).
 
 ## Build Steps
 
