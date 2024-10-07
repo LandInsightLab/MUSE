@@ -1,5 +1,5 @@
 <p align="center">
-  <img width="180" src="./resources/MUSE_LOGO2.svg" alt="MUSE_LOGO">
+  <img width="180" src="./resources/png/MUSE.png" alt="MUSE_LOGO">
   <h1 align="center">MUSE: Multi-engine Urban Expansion Simulator</h1>
 </p>
 
