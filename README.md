@@ -3,7 +3,8 @@
   <h1 align="center">MUSE: Multi-engine Urban Expansion Simulator</h1>
 </p>
 
-# Paper Link:
+# Paper Link
+
 <a href="https://doi.org/10.1080/136588197242329">Jianxin Yang, Wenwu Tang, Jian Gong, Rui Shi, Minrui Zheng, Yunzhe Dai,Simulating urban expansion using cellular automata model with spatiotemporally explicit representation of urban demand,Landscape and Urban Planning</a>
 
 <a href="http://dx.doi.org/10.2139/ssrn.4171720">Yang, Jianxin and Yang, Shengbing and Li, Jingjing and Gong, Jian and Li, Jingye and Yuan, Man and Dai, Yunzhe, A Distance-Driven Urban Simulation Model (DISUSIM): Accounting For Urban Morphology At Multiple Landscape Levels</a>
@@ -28,6 +29,7 @@ Furthermore, MUSE offers three patch size controllers to facilitate precise patc
 With MUSE, users gain the capability to create diverse spatial patterns for urban land structures. They can construct patches of varying sizes and forms using different algorithms and generators, effectively mimicking the dynamic process of urban expansion. This versatile model holds immense potential for applications in decision support, land resource management, urban planning, and land use planning. Whether you are a researcher, urban planner, or decision-maker, MUSE empowers you to explore and understand the complexities of urban growth, contributing valuable insights to the field.
 
 # 2. Installation
+
 ## Quick Installation
 
 If you want to quickly use the software, you can download the release package from the following link: [Installation Link](xxx).
@@ -37,17 +39,22 @@ If you want to quickly use the software, you can download the release package fr
 If you prefer to build the project from the source, please follow these steps:
 
 1. **Clone the Project:**
+
    ```bash
    git clone git@github.com:LandInsightLab/MUSE.git
 2. **Install Python 3.11: Create a new environment named MUSE_ENV using Conda:**
+
    ```bash
    conda create -n MUSE_ENV python=3.11
 3. **Activate the Environment: Switch to the MUSE_ENV environment:**
+
    ```bash
    conda activate MUSE_ENV
 4. **Install Required Packages: Install the necessary packages listed in requirements.txt:**
+
    ```bash
    pip install -r requirements.txt
 5. **Run the Application: Finally, run the application using the following command:**
+
    ```bash
    python.exe main.py
