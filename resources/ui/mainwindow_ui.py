@@ -966,7 +966,7 @@ class Ui_MainWindow(object):
     # setupUi
 
     def retranslateUi(self, MainWindow):
-        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"Multi-engine Urban Expansion Simulator\uff08MUSE\uff09V1.0.0", None))
+        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"Multi-engine Urban Expansion Simulator\uff08MUSE\uff09", None))
         self.actionnewFile.setText(QCoreApplication.translate("MainWindow", u"\u65b0\u5efa", None))
         self.actionopen.setText(QCoreApplication.translate("MainWindow", u"\u6253\u5f00", None))
         self.actionge_00_ParsByGa.setText(QCoreApplication.translate("MainWindow", u"GA\u5bfb\u53c2", None))

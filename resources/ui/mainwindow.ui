@@ -17,7 +17,7 @@
    </font>
   </property>
   <property name="windowTitle">
-   <string>Multi-engine Urban Expansion Simulator（MUSE）V1.0.0</string>
+   <string>Multi-engine Urban Expansion Simulator（MUSE）</string>
   </property>
   <property name="windowIcon">
    <iconset resource="../qrc/res.qrc">
