@@ -24,7 +24,7 @@
 
 
 def load_large_modules():
-    global pd, pickle, configparser, logging
+    global pd, pickle, configparser, logging, sys
     global QFileDialog, QMessageBox, QDesktopServices, QPainter, QColor
     global QUrl, QSettings, QPropertyAnimation, Qt
     global MUSE_API, CheckTifDimensions
@@ -32,6 +32,7 @@ def load_large_modules():
     global Ui_MainWindow
     global Path
     
+    import sys
     import pandas as pd
     import pickle
     import configparser
@@ -460,7 +461,7 @@ class MainWindow(QMainWindow):
                 QMessageBox.critical(self, "Error", f"Failed to save file: {e}")
 
     def on_action_00_exit_triggered(self):
-        exit()
+        sys.exit()
 
     def on_action_00_ga_triggered(self):
         self.mgot_widget.show()
