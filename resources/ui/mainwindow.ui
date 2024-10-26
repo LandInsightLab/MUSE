@@ -1363,7 +1363,6 @@
     <property name="title">
      <string>Tool</string>
     </property>
-    <addaction name="action_00_MUSE_Toolbox"/>
     <addaction name="actionge_00_ParsByGa"/>
     <addaction name="action_00_mlcs"/>
     <addaction name="action_00_pst"/>
@@ -1373,10 +1372,10 @@
      <string>Help</string>
     </property>
     <addaction name="action_00_user_guid"/>
-    <addaction name="action_00_open_paper"/>
     <addaction name="separator"/>
     <addaction name="action_00_version"/>
     <addaction name="action_00_about"/>
+    <addaction name="action_00_MUSE_Toolbox"/>
    </widget>
    <widget class="QMenu" name="preferences">
     <property name="title">
@@ -1398,6 +1397,7 @@
     </widget>
     <addaction name="language"/>
     <addaction name="menumodel"/>
+    <addaction name="action_00_open_paper"/>
    </widget>
    <addaction name="files"/>
    <addaction name="tools"/>
@@ -1417,7 +1417,7 @@
   </action>
   <action name="actionge_00_ParsByGa">
    <property name="text">
-    <string>Parameter Optimization Tool (POT) module</string>
+    <string>Parameter Optimization Tool (POT)</string>
    </property>
   </action>
   <action name="action_00_about">
@@ -1443,7 +1443,7 @@
   </action>
   <action name="action_00_simulation">
    <property name="text">
-    <string>Model validation</string>
+    <string>Calibration and validation</string>
    </property>
   </action>
   <action name="action_00_verification">
@@ -1498,7 +1498,7 @@
   </action>
   <action name="action_00_mlcs">
    <property name="text">
-    <string>Urban Development Suitability Assessment (UDSA) module</string>
+    <string>Urban Development Suitability Assessment (UDSA)</string>
    </property>
   </action>
   <action name="action_00_pst">

@@ -321,7 +321,6 @@ class PSSA_Dialog(QWidget):
         super().__init__(parent)
         self.ui = Ui_PSSA()
         self.ui.setupUi(self)
-        self.setWindowTitle("Patch Size Statistical Analysis (PSSA) ")  # Set window title
         self.settings = QSettings("MyCompany", "MyApp")
         self.can_run = False
         self.worker_thread = None

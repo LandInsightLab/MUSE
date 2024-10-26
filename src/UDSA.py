@@ -277,7 +277,6 @@ class UDSA_Dialog(QWidget):
         super().__init__()
         self.ui = Ui_UDSA()
         self.ui.setupUi(self)
-        self.setWindowTitle("Urban Development Suitability Assessment (UDSA) module")  # Set window title
         
         # Initialize QSettings
         self.settings = QSettings("MyCompany", "MLSuitabilityAssessment")

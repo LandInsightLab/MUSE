@@ -194,8 +194,6 @@ class POT_Widget(QWidget, Ui_POT):
         self.ui.setupUi(self)  # Set up the UI
 
         # load_modules()
-
-        self.setWindowTitle("Parameter Optimization Tool (POT) module")  # Set window title
         self.ga_thread = None
         self.pool = None
         self.mgot_algorithms_init()

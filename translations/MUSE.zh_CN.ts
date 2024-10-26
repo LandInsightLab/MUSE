@@ -266,8 +266,8 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Parameter Optimization Tool (POT) module</source>
-        <translation type="unfinished">多目标优化模块</translation>
+        <source>Parameter Optimization Tool (POT)</source>
+        <translation type="unfinished">多目标优化</translation>
     </message>
     <message>
         <source>About</source>
@@ -322,8 +322,8 @@
         <translation type="unfinished">MUSE ArcGIS Pro工具箱</translation>
     </message>
     <message>
-        <source>Urban Development Suitability Assessment (UDSA) module</source>
-        <translation type="unfinished">城市发展适宜性评估模块</translation>
+        <source>Urban Development Suitability Assessment (UDSA)</source>
+        <translation type="unfinished">城市发展适宜性评估</translation>
     </message>
     <message>
         <source>Patch Size Statistical Analysis (PSSA)</source>
@@ -333,8 +333,8 @@
 <context>
     <name>POT</name>
     <message>
-        <source>Parameter Optimization Tool (POT) module</source>
-        <translation type="unfinished">多目标优化模块</translation>
+        <source>Parameter Optimization Tool (POT)</source>
+        <translation type="unfinished">多目标优化</translation>
     </message>
     <message>
         <source>Population size</source>
@@ -447,8 +447,8 @@
 <context>
     <name>UDSA</name>
     <message>
-        <source>Urban Development Suitability Assessment (UDSA) module</source>
-        <translation type="unfinished">城市发展适宜性评估模块</translation>
+        <source>Urban Development Suitability Assessment (UDSA)</source>
+        <translation type="unfinished">城市发展适宜性评估</translation>
     </message>
     <message>
         <source>Driver Factors Input</source>

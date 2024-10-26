@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Urban Development Suitability Assessment (UDSA) module</string>
+   <string>Urban Development Suitability Assessment (UDSA)</string>
   </property>
   <property name="styleSheet">
    <string notr="true"/>

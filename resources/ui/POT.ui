@@ -23,7 +23,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>Parameter Optimization Tool (POT) module</string>
+   <string>Parameter Optimization Tool (POT)</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_5">
    <item>

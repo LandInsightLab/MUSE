@@ -177,7 +177,7 @@ class Ui_POT(object):
     # setupUi
 
     def retranslateUi(self, POT):
-        POT.setWindowTitle(QCoreApplication.translate("POT", u"Parameter Optimization Tool (POT) module", None))
+        POT.setWindowTitle(QCoreApplication.translate("POT", u"Parameter Optimization Tool (POT)", None))
         self.label.setText(QCoreApplication.translate("POT", u"Population size", None))
         self.label_3.setText(QCoreApplication.translate("POT", u"Thread Count", None))
         self.label_2.setText(QCoreApplication.translate("POT", u"Number of generations", None))

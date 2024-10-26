@@ -441,7 +441,7 @@ class Ui_UDSA(object):
     # setupUi
 
     def retranslateUi(self, UDSA):
-        UDSA.setWindowTitle(QCoreApplication.translate("UDSA", u"Urban Development Suitability Assessment (UDSA) module", None))
+        UDSA.setWindowTitle(QCoreApplication.translate("UDSA", u"Urban Development Suitability Assessment (UDSA)", None))
         self.groupBox.setTitle(QCoreApplication.translate("UDSA", u"Driver Factors Input", None))
         self.button_01_add.setText("")
         self.button_01_del.setText("")
