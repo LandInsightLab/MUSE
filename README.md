@@ -58,3 +58,10 @@ If you prefer to build the project from the source, please follow these steps:
 
    ```bash
    python.exe main.py
+
+# 3. Software Usage Guide
+
+To start using the MUSE software:
+
+- **Install the Software**: Follow the steps in **Quick Installation** to install the software.
+- **Open the User Guide**: Once installed, you can access the detailed user guide by navigating to **Help > User Guide** within the software interface.
