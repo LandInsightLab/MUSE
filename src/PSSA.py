@@ -574,7 +574,7 @@ class PSSA_Dialog(QWidget):
         if files_to_overwrite:
             # Prepare message for files that will be overwritten
             msg = f"The following files will be overwritten and must be closed:\n\n"
-            msg += "\n".join(files_to_overwrite)
+            msg += "\n".join(str(file) for file in files_to_overwrite)  # Convert WindowsPath to str
             msg_box = QMessageBox()
             msg_box.setIcon(QMessageBox.Warning)
             msg_box.setText(msg)
@@ -591,6 +591,7 @@ class PSSA_Dialog(QWidget):
         else:
             # If no files need to be overwritten, return True directly
             return True
+
 
     def calculate(self):
         file_paths = [self.ui.table_02_input_show.item(row, 1).text() for row in range(self.ui.table_02_input_show.rowCount())]

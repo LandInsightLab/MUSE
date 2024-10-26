@@ -141,9 +141,10 @@ class SlipButton(QWidget):
 
 
 class MainWindow(QMainWindow):
-    def __init__(self, parent=None):
+    def __init__(self, config, parent=None):
         super().__init__(parent)
         load_large_modules()
+        
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         
@@ -151,10 +152,8 @@ class MainWindow(QMainWindow):
         self.pst_widget = PSSA_Dialog()
         self.mgot_widget = POT_Widget()
         self.settings = QSettings("LandInisightLab", "MUSE")
-        self.config_file = './config.ini'
-        self.config = configparser.ConfigParser()
+        self.config = config
 
-        self.language = -1
         # Instantiate SlipButton and add to frame_02
         self.slip_button = SlipButton(self.ui.frame_02)
         self.slip_button.move(10, 10) 
@@ -164,7 +163,6 @@ class MainWindow(QMainWindow):
         self.write_thread = None
         self.muse_thread = None
         self.setup_logging()
-        self.load_config()
         self.set_default_parameters()
 
         # action ---------------------------------------------------------------------------------------- connect
@@ -182,6 +180,7 @@ class MainWindow(QMainWindow):
         self.ui.action_00_patch_info.triggered.connect(self.on_action_00_patch_info_triggered)
         self.ui.action_00_version.triggered.connect(self.on_action_00_version_triggered)
         self.ui.action_00_user_guid.triggered.connect(self.on_action_00_user_guide_triggered)
+        self.ui.action_00_open_paper.triggered.connect(self.on_action_00_open_paper_triggered)
         self.ui.action_00_MUSE_Toolbox.triggered.connect(self.on_action_00_muse_toolbox_triggered)
         # input ------------------------------------------------------------------------------------connect end
 
@@ -238,31 +237,8 @@ class MainWindow(QMainWindow):
             format='%(asctime)s - %(levelname)s - %(message)s',  # Log format
         )
 
-    def load_config(self):
-        """Load the config file and check the Language item"""
-        try:
-            if not Path(self.config_file).exists():
-                raise FileNotFoundError(f"Config file {self.config_file} not found.")
-            
-            self.config.read(self.config_file)
-
-            if 'Settings' not in self.config or 'Language' not in self.config['Settings']:
-                raise KeyError("Missing 'Settings' section or 'Language' item in the config file.")
-
-            # Get the current language value from the config file
-            current_language = self.config['Settings']['Language']
-            
-            if current_language == '0':
-                self.on_action_00_English_triggered()
-            elif current_language == '1':
-                self.on_action_00_Chinese_simplified_triggered()
-            else:
-                raise ValueError("Invalid language setting value, must be '0' (English) or '1' (Chinese).")
-        except Exception as e:
-            logging.error(f"Error while loading config file: {e}")
-        
     def save_config(self):
-        with open(self.config_file, 'w') as configfile:
+        with open('./config.ini', 'w') as configfile:
             self.config.write(configfile)
 
     def open_file_with_filter(self, dir_path, data_type):
@@ -361,7 +337,6 @@ class MainWindow(QMainWindow):
                     data = pickle.load(file)
 
                     # Apply the loaded data to the corresponding parts of the program
-                    language = data.get("language", "")
                     scenario_simulation = data.get("mode", "")
                     self.ui.lineEdit_01_urban_start.setText(data.get("initialUrbanLand", ""))
                     self.ui.lineEdit_01_urban_end.setText(data.get("finalUrbanLand", ""))
@@ -387,11 +362,6 @@ class MainWindow(QMainWindow):
                     self.ui.doubleSpinBox_05_parameter_beta.setValue(data.get("neighborhoodControlParam", 0.0))
                     self.ui.doubleSpinBox_05_parameter_delta.setValue(data.get("distanceControlParam", 0.0))
                     self.ui.lineEdit_05_shape_parameters_path.setText(data.get("PRG_Parameters", ""))
-                    # Continue loading the remaining data items
-                    if language == 0:
-                        self.on_action_00_English_triggered()
-                    elif language == 1:
-                        self.on_action_00_Chinese_simplified_triggered()
 
                     if scenario_simulation:
                         self.on_action_00_verification_triggered()
@@ -409,7 +379,6 @@ class MainWindow(QMainWindow):
     def on_action_00_save_triggered(self):
         # Collect all the user input parameters
         data = {
-            "language": self.language,
             "mode": self.scenario_simulation,
             "initialUrbanLand": self.ui.lineEdit_01_urban_start.text(),
             "finalUrbanLand": self.ui.lineEdit_01_urban_end.text(),
@@ -481,181 +450,31 @@ class MainWindow(QMainWindow):
         self.pst_widget.adjust_column_widths()
 
     def on_action_00_Chinese_simplified_triggered(self):
-        if self.language != 1:
-            self.ui.files.setTitle("文件")
-            self.ui.tools.setTitle("工具")
-            self.ui.preferences.setTitle("首选项")
-            self.ui.help.setTitle("帮助")
-
-            self.ui.action_00_save.setText("保存")
-            self.ui.action_00_open.setText("打开")
-            self.ui.action_00_exit.setText("退出")
-
-            self.ui.action_00_MUSE_Toolbox.setText("MUSE ArcGIS Pro工具箱")
-            self.ui.actionge_00_ParsByGa.setText("参数优化工具模块")
-            self.ui.action_00_mlcs.setText("城市发展适宜性评估模块")
-            self.ui.action_00_pst.setText("斑块大小统计分析")
-
-            self.ui.language.setTitle("语言")
-            self.ui.action_00_English.setText("英文")
-            self.ui.action_00_Chinese_Simplified.setText("简体中文")
-            self.ui.menumodel.setTitle("模式")
-            self.ui.action_00_simulation.setText("模型验证")
-            self.ui.action_00_verification.setText("情景模拟")
-
-            self.ui.action_00_user_guid.setText("用户指南")
-            self.ui.action_00_version.setText("版本")
-            self.ui.action_00_about.setText("关于")
-
-            self.ui.box_01_data_Input.setTitle("数据输入")
-            self.ui.label_01_urban_start.setText("模拟初期城市土地")
-            self.ui.label_01_urban_contraint.setText("空间约束")
-            self.ui.label_01_urban_probability.setText("城市发展适宜性")
-            self.ui.label_01_urban_area.setText("新增城市土地面积")
-            self.ui.label_01_urban_end.setText("模拟末期城市土地")
-
-            self.ui.box_02_modifing.setTitle("基于高斯的调控")
-            self.ui.label_02_modifing_tif.setText("城市中心")
-            self.ui.label_02_modifing_csv.setText("高斯参数")
-            self.ui.label_02_modifing_weight.setText("高斯函数权重")
-
-            self.ui.box_03_model_parameters.setTitle("全局参数")
-            self.ui.label_03_strat_year.setText("起始时间")
-            self.ui.label_03_end_Year.setText("结束时间")
-            self.ui.label_03_neibor_type.setText("邻域类型")
-            self.ui.label_03_pool_Slice.setText("修剪系数")
-            self.ui.label_03_location_uncertainty.setText("斑块位置不确定度")
-            self.ui.checkBox_03_organic_by_step.setText("逐年有机斑块比例")
-
-            self.ui.box_04_patch_size_generator.setTitle("斑块大小生成器")
-            self.ui.comboBox_04_generator_select.setItemText(0, "对数正态分布")
-            self.ui.comboBox_04_generator_select.setItemText(1, "幂律分布")
-            self.ui.comboBox_04_generator_select.setItemText(2, "历史时期斑块大小")
-            self.ui.label_04_mean.setText("均值")
-            self.ui.label_04_standard_deviation.setText("标准差")
-            self.ui.label_04_scale_constant.setText("比例常数")
-            self.ui.label_04_power.setText("幂次")
-
-            self.ui.box_05_engine_select.setTitle("斑块生成引擎选择")
-            self.ui.comboBox_05_engine_select.setItemText(0, "简单斑块生成引擎")
-            self.ui.comboBox_05_engine_select.setItemText(1, "邻域控制斑块生成引擎")
-            self.ui.comboBox_05_engine_select.setItemText(2, "距离控制斑块生成引擎")
-            self.ui.comboBox_05_engine_select.setItemText(3, "权衡优化斑块生成引擎")
-            self.ui.label_05_shape_parameters_path.setText("形状参数")
-
-            self.ui.box_06_run_and_export.setTitle("模型验证")
-            self.ui.btn_06_run.setText("运行")
-            self.ui.btn_06_save.setText("保存")
-
-            # 设置占位符文本，指导用户输入
-            self.ui.lineEdit_01_urban_start.setPlaceholderText("初始城市土地栅格（tif/tiff，值为0和1）。")
-            self.ui.lineEdit_01_urban_constraint.setPlaceholderText("限制因子栅格（tif/tiff，值为0和1）。")
-            self.ui.lineEdit_01_urban_Area.setPlaceholderText("新增城市土地面积需求（csv，2列）。")
-            self.ui.lineEdit_01_urban_probability.setPlaceholderText("城市适宜性概率栅格（tif/tiff，值为0-1）。")
-            self.ui.lineEdit_01_urban_end.setPlaceholderText("最终城市土地栅格（tif/tiff，值为0和1）。")
-            self.ui.lineEdit_02_modifing_tif.setPlaceholderText("城市中心点栅格（tif/tiff，值为0和1）。")
-            self.ui.lineEdit_02_modifing_csv.setPlaceholderText("高斯修正参数（csv，4列）。")
-            self.ui.lineEdit_03_organic_by_step.setPlaceholderText("有机增长步长数据（csv，2列）。")
-            self.ui.lineEdit_04_self_defining_generator.setPlaceholderText("生成器的patch大小数据（csv，2列）。")
-            self.ui.lineEdit_05_shape_parameters_path.setPlaceholderText("可选输入：CSV，5列")
-
-            # 在 textBrowser 中显示初始说明
-            self.ui.textBrowser.setPlaceholderText("模型输出将在此显示。")
-
-            try:
+        try:
+            if self.config['Settings']['Language'] != '1':
                 self.config['Settings']['Language'] = '1'
-                self.language = 1
-                self.save_config()  # Save the updated config
-            except Exception as e:
-                logging.error(f"Error while setting language to English: {e}")
+                self.save_config()
+                self.show_message("语言设置为简体中文。请重启应用以使更改生效。", 'Message')
+        except KeyError as e:
+            logging.error(f"Configuration key error: {e}")
+            self.show_message("配置文件“config.ini”不存在或配置文件中缺少必要的键。")
+        except Exception as e:
+            logging.error(f"An error occurred while setting the language: {e}")
+            self.show_message("设置语言时发生未知错误。")
 
     def on_action_00_English_triggered(self):
-        if self.language != 0:
-            self.ui.files.setTitle("File")
-            self.ui.tools.setTitle("Tool")
-            self.ui.preferences.setTitle("Preference")
-            self.ui.help.setTitle("Help")
-
-            self.ui.action_00_save.setText("save")
-            self.ui.action_00_open.setText("open")
-            self.ui.action_00_exit.setText("Exit")
-
-            self.ui.action_00_MUSE_Toolbox.setText("MUSE Toolbox")
-            self.ui.actionge_00_ParsByGa.setText("Parameter Optimization Tool (POT) module")
-            self.ui.action_00_mlcs.setText("Urban Development Suitability Assessment (UDSA) module")
-            self.ui.action_00_pst.setText("Patch Size Statistical Analysis (PSSA) ")
-
-            self.ui.language.setTitle("Language")
-            self.ui.action_00_English.setText("English")
-            self.ui.action_00_Chinese_Simplified.setText("Chinese(Simplified)")
-            self.ui.menumodel.setTitle("Mode")
-            self.ui.action_00_simulation.setText("Model validation")       
-            self.ui.action_00_verification.setText("Scenario simulation") 
-
-            self.ui.action_00_user_guid.setText("User Guide")
-            self.ui.action_00_version.setText("version")
-            self.ui.action_00_about.setText("About")
-    
-            self.ui.box_01_data_Input.setTitle("Input files")
-            self.ui.label_01_urban_start.setText("Urban land use map of starting time")
-            self.ui.label_01_urban_contraint.setText("Spatial Constraints")
-            self.ui.label_01_urban_probability.setText("Urban development suitability")
-            self.ui.label_01_urban_area.setText("Stepwise demand of urban development")
-            self.ui.label_01_urban_end.setText("Urban land use map of ending time")        
-
-            self.ui.box_02_modifing.setTitle("Gaussian-based regulation")
-            self.ui.label_02_modifing_tif.setText("City centers")
-            self.ui.label_02_modifing_csv.setText("Gaussian parameters")
-            self.ui.label_02_modifing_weight.setText("Weight for Gaussian function")
-            
-            self.ui.box_03_model_parameters.setTitle("Global parameters")
-            self.ui.label_03_strat_year.setText("Starting time")
-            self.ui.label_03_end_Year.setText("Ending time")
-            self.ui.label_03_neibor_type.setText("Type of Neighborhood")
-            self.ui.label_03_pool_Slice.setText("Pruning parameter")
-            self.ui.label_03_location_uncertainty.setText("Location uncertainty")
-            self.ui.checkBox_03_organic_by_step.setText("Enable Stepwise Organic Growth")
-
-            self.ui.box_04_patch_size_generator.setTitle("Patch size generator")
-            self.ui.comboBox_04_generator_select.setItemText(0, "Lognormal Distribution")
-            self.ui.comboBox_04_generator_select.setItemText(1, "Power Distribution")
-            self.ui.comboBox_04_generator_select.setItemText(2, "History patch size")
-            self.ui.label_04_mean.setText("Mean")
-            self.ui.label_04_standard_deviation.setText("Standard deviation")
-            self.ui.label_04_scale_constant.setText("Scale Constant")
-            self.ui.label_04_power.setText("Power")
-
-            self.ui.box_05_engine_select.setTitle("Patch generation operator")
-            self.ui.comboBox_05_engine_select.setItemText(0, "Simple Patch Generation Engine (SPGE)")
-            self.ui.comboBox_05_engine_select.setItemText(1, "Neighbor Patch Generation Engine (NeiPGE)")
-            self.ui.comboBox_05_engine_select.setItemText(2, "Distance Patch Generation Engine (DisPGE)")
-            self.ui.comboBox_05_engine_select.setItemText(3, "Parameterized Patch Generation Engine (PPGE)")
-            self.ui.label_05_shape_parameters_path.setText("Shape Parameter Path")
-
-            self.ui.box_06_run_and_export.setTitle("Results and performance")
-            self.ui.btn_06_run.setText("Run")
-            self.ui.btn_06_save.setText("Save")
-
-            self.ui.lineEdit_01_urban_start.setPlaceholderText("Initial urban land raster (tif/tiff, values 0 and 1).")
-            self.ui.lineEdit_01_urban_constraint.setPlaceholderText("Constraint factor raster (tif/tiff, values 0 and 1).")
-            self.ui.lineEdit_01_urban_Area.setPlaceholderText("New urban land area demand (csv, 2 columns).")
-            self.ui.lineEdit_01_urban_probability.setPlaceholderText("Urban suitability probability raster (tif/tiff, values 0-1).")
-            self.ui.lineEdit_01_urban_end.setPlaceholderText("Final urban land raster (tif/tiff, values 0 and 1).")
-            self.ui.lineEdit_02_modifing_tif.setPlaceholderText("Urban center point raster (tif/tiff, values 0 and 1).")
-            self.ui.lineEdit_02_modifing_csv.setPlaceholderText("Gaussian correction parameters (csv, 4 columns).")
-            self.ui.lineEdit_03_organic_by_step.setPlaceholderText("Organic growth step data (csv, 2 columns).")
-            self.ui.lineEdit_04_self_defining_generator.setPlaceholderText("Patch size data (csv, 2 columns).")
-            self.ui.lineEdit_05_shape_parameters_path.setPlaceholderText("Optional input, (csv, 2 columns)")
-
-            # Display initial instruction in textBrowser
-            self.ui.textBrowser.setPlaceholderText("Run Information Output...")
-
-            try:
+        try:
+            if self.config['Settings']['Language'] != '0':
                 self.config['Settings']['Language'] = '0'
-                self.language = 0
                 self.save_config()  # Save the updated config
-            except Exception as e:
-                logging.error(f"Error while setting language to English: {e}")
+                self.show_message("Language set to English. Please restart the application for the changes to take effect.", 'Message')
+        except KeyError as e:
+            logging.error(f"Configuration key error: {e}")
+            self.show_message("The configuration file 'config.ini' is missing or missing required keys in the configuration file.")
+        except Exception as e:
+            logging.error(f"An error occurred while setting the language: {e}")
+            self.show_message("An unknown error occurred while setting the language.")
+
 
     def on_action_00_simulation_triggered(self):
         self.ui.urban_End_Frame.setVisible(True)
@@ -670,10 +489,11 @@ class MainWindow(QMainWindow):
         self.ui.actionge_00_ParsByGa.setDisabled(True)
 
     def on_action_00_user_guide_triggered(self):
+        language = self.config.get("Settings", "language")
         try:
-            if self.language == 0:
+            if language == '0':
                 file_path = "Guide_ENG.pdf"
-            elif self.language == 1:
+            elif language == '1':
                 file_path = "Guide_CH.pdf"
             else:
                 logging.error("Unsupported language setting.")
@@ -689,12 +509,17 @@ class MainWindow(QMainWindow):
         except Exception as e:
             logging.error(f"Unexpected error: {e}")
 
+    def on_action_00_open_paper_triggered(self):
+        paper_url = "https://doi.org/10.1080/13658816.2024.2416066"
+        QDesktopServices.openUrl(QUrl(paper_url))
+
     def on_action_00_patch_info_triggered(self):   
 
         pass
 
     def on_action_00_version_triggered(self):
-
+        version_info = self.config.get("Settings", "version", fallback="Unknown version")
+        QMessageBox.information(self, "Version Information", f"Version: {version_info}")
         pass
 
     def on_action_00_about_triggered(self):

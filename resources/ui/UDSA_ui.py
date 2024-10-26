@@ -172,8 +172,14 @@ class Ui_UDSA(object):
         self.verticalLayout_10 = QVBoxLayout(self.frame_7)
         self.verticalLayout_10.setObjectName(u"verticalLayout_10")
         self.comboBox_03 = QComboBox(self.frame_7)
+        self.comboBox_03.addItem("")
+        self.comboBox_03.addItem("")
+        self.comboBox_03.addItem("")
+        self.comboBox_03.addItem("")
+        self.comboBox_03.addItem("")
+        self.comboBox_03.addItem("")
         self.comboBox_03.setObjectName(u"comboBox_03")
-        self.comboBox_03.setMinimumSize(QSize(0, 25))
+        self.comboBox_03.setMinimumSize(QSize(138, 25))
 
         self.verticalLayout_10.addWidget(self.comboBox_03)
 
@@ -422,6 +428,7 @@ class Ui_UDSA(object):
         self.splitter.addWidget(self.frame_2)
         self.textBrowser_06_output = MyTextBrowser(self.splitter)
         self.textBrowser_06_output.setObjectName(u"textBrowser_06_output")
+        self.textBrowser_06_output.setMinimumSize(QSize(138, 0))
         self.textBrowser_06_output.setMaximumSize(QSize(16777215, 16777215))
         self.splitter.addWidget(self.textBrowser_06_output)
 
@@ -434,7 +441,7 @@ class Ui_UDSA(object):
     # setupUi
 
     def retranslateUi(self, UDSA):
-        UDSA.setWindowTitle(QCoreApplication.translate("UDSA", u"Dialog", None))
+        UDSA.setWindowTitle(QCoreApplication.translate("UDSA", u"Urban Development Suitability Assessment (UDSA) module", None))
         self.groupBox.setTitle(QCoreApplication.translate("UDSA", u"Driver Factors Input", None))
         self.button_01_add.setText("")
         self.button_01_del.setText("")
@@ -445,10 +452,20 @@ class Ui_UDSA(object):
         self.label.setText(QCoreApplication.translate("UDSA", u"Model Selection", None))
         self.label_2.setText(QCoreApplication.translate("UDSA", u"Random Samples", None))
         self.label_7.setText(QCoreApplication.translate("UDSA", u"Test Data Ratio", None))
-        self.comboBox_03.setCurrentText("")
+        self.comboBox_03.setItemText(0, QCoreApplication.translate("UDSA", u"XGBoost", None))
+        self.comboBox_03.setItemText(1, QCoreApplication.translate("UDSA", u"Random Forest", None))
+        self.comboBox_03.setItemText(2, QCoreApplication.translate("UDSA", u"SVM", None))
+        self.comboBox_03.setItemText(3, QCoreApplication.translate("UDSA", u"MLP", None))
+        self.comboBox_03.setItemText(4, QCoreApplication.translate("UDSA", u"Naive Bayes", None))
+        self.comboBox_03.setItemText(5, QCoreApplication.translate("UDSA", u"Logistic Regression", None))
+
+        self.comboBox_03.setCurrentText(QCoreApplication.translate("UDSA", u"XGBoost", None))
+        self.lineEdit_03_random_samples.setPlaceholderText(QCoreApplication.translate("UDSA", u"Number of random samples", None))
+        self.lineEdit_03_sample_ratio.setText("")
         self.checkBox_03_cv.setText(QCoreApplication.translate("UDSA", u"Cross Validation", None))
         self.checkBox_03_thread.setText(QCoreApplication.translate("UDSA", u"Multithreading", None))
         self.checkBox_03_save.setText(QCoreApplication.translate("UDSA", u"Save Training Data", None))
+        self.lineEdit_03_save.setPlaceholderText(QCoreApplication.translate("UDSA", u"Enter save path for training data (csv or txt)", None))
         self.toolButton_03_save.setText(QCoreApplication.translate("UDSA", u"...", None))
         self.groupBox_4.setTitle(QCoreApplication.translate("UDSA", u"Model Parameters", None))
         self.label_041.setText(QCoreApplication.translate("UDSA", u"TextLabel", None))
@@ -459,6 +476,8 @@ class Ui_UDSA(object):
         self.button_04_fetch.setText(QCoreApplication.translate("UDSA", u"Fetch and Train", None))
         self.button_04_train.setText(QCoreApplication.translate("UDSA", u"Train", None))
         self.groupBox_5.setTitle(QCoreApplication.translate("UDSA", u"Prediction", None))
+        self.lineEdit_05_save_path.setText("")
+        self.lineEdit_05_save_path.setPlaceholderText(QCoreApplication.translate("UDSA", u"Enter save path for prediction results (tif or tiff)", None))
         self.button_05_save.setText(QCoreApplication.translate("UDSA", u"...", None))
         self.button_05_predict.setText(QCoreApplication.translate("UDSA", u"Start Prediction", None))
         self.textBrowser_06_output.setHtml(QCoreApplication.translate("UDSA", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
@@ -469,5 +488,6 @@ class Ui_UDSA(object):
 "li.checked::marker { content: \"\\2612\"; }\n"
 "</style></head><body style=\" font-family:'Microsoft YaHei UI'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", None))
+        self.textBrowser_06_output.setPlaceholderText(QCoreApplication.translate("UDSA", u"Run Information Output...", None))
     # retranslateUi
 

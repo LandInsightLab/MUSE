@@ -47,7 +47,7 @@
         <item>
          <widget class="QGroupBox" name="box_01_data_Input">
           <property name="title">
-           <string>数据输入</string>
+           <string>Input files</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignmentFlag::AlignCenter</set>
@@ -67,7 +67,7 @@
                 <item>
                  <widget class="QLabel" name="label_01_urban_start">
                   <property name="text">
-                   <string>模拟初期城市土地</string>
+                   <string>Urban land use map of starting time</string>
                   </property>
                  </widget>
                 </item>
@@ -77,7 +77,11 @@
                    <number>6</number>
                   </property>
                   <item>
-                   <widget class="QLineEdit" name="lineEdit_01_urban_start"/>
+                   <widget class="QLineEdit" name="lineEdit_01_urban_start">
+                    <property name="placeholderText">
+                     <string>Initial urban land raster (tif/tiff, values 0 and 1).</string>
+                    </property>
+                   </widget>
                   </item>
                   <item>
                    <widget class="QToolButton" name="btn_01_urban_start">
@@ -100,14 +104,18 @@
                 <item>
                  <widget class="QLabel" name="label_01_urban_contraint">
                   <property name="text">
-                   <string>开发限制因子</string>
+                   <string>Spatial Constraints</string>
                   </property>
                  </widget>
                 </item>
                 <item>
                  <layout class="QHBoxLayout" name="horizontalLayout_21">
                   <item>
-                   <widget class="QLineEdit" name="lineEdit_01_urban_constraint"/>
+                   <widget class="QLineEdit" name="lineEdit_01_urban_constraint">
+                    <property name="placeholderText">
+                     <string>Constraint factor raster (tif/tiff, values 0 and 1).</string>
+                    </property>
+                   </widget>
                   </item>
                   <item>
                    <widget class="QToolButton" name="btn_01_urban_constraint">
@@ -130,14 +138,18 @@
                 <item>
                  <widget class="QLabel" name="label_01_urban_area">
                   <property name="text">
-                   <string>新增城市土地面积</string>
+                   <string>Stepwise demand of urban development</string>
                   </property>
                  </widget>
                 </item>
                 <item>
                  <layout class="QHBoxLayout" name="horizontalLayout_18">
                   <item>
-                   <widget class="QLineEdit" name="lineEdit_01_urban_Area"/>
+                   <widget class="QLineEdit" name="lineEdit_01_urban_Area">
+                    <property name="placeholderText">
+                     <string>New urban land area demand (csv, 2 columns).</string>
+                    </property>
+                   </widget>
                   </item>
                   <item>
                    <widget class="QToolButton" name="btn_01_urban_area">
@@ -160,14 +172,18 @@
                 <item>
                  <widget class="QLabel" name="label_01_urban_probability">
                   <property name="text">
-                   <string>城市建设适宜性</string>
+                   <string>Urban development suitability</string>
                   </property>
                  </widget>
                 </item>
                 <item>
                  <layout class="QHBoxLayout" name="horizontalLayout_22">
                   <item>
-                   <widget class="QLineEdit" name="lineEdit_01_urban_probability"/>
+                   <widget class="QLineEdit" name="lineEdit_01_urban_probability">
+                    <property name="placeholderText">
+                     <string>Urban suitability probability raster (tif/tiff, values 0-1).</string>
+                    </property>
+                   </widget>
                   </item>
                   <item>
                    <widget class="QToolButton" name="btn_01_urban_probability">
@@ -194,12 +210,16 @@
                 <item>
                  <widget class="QLabel" name="label_01_urban_end">
                   <property name="text">
-                   <string>模拟末期城市土地</string>
+                   <string>Urban land use map of ending time</string>
                   </property>
                  </widget>
                 </item>
                 <item>
-                 <widget class="QLineEdit" name="lineEdit_01_urban_end"/>
+                 <widget class="QLineEdit" name="lineEdit_01_urban_end">
+                  <property name="placeholderText">
+                   <string>Final urban land raster (tif/tiff, values 0 and 1).</string>
+                  </property>
+                 </widget>
                 </item>
                 <item>
                  <widget class="QToolButton" name="btn_01_urban_end">
@@ -234,7 +254,7 @@
            <string notr="true"/>
           </property>
           <property name="title">
-           <string>GroupBox</string>
+           <string>Gaussian-based regulation</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignmentFlag::AlignCenter</set>
@@ -275,12 +295,16 @@
               <item>
                <widget class="QLabel" name="label_02_modifing_tif">
                 <property name="text">
-                 <string>TextLabel</string>
+                 <string>City centers</string>
                 </property>
                </widget>
               </item>
               <item>
-               <widget class="QLineEdit" name="lineEdit_02_modifing_tif"/>
+               <widget class="QLineEdit" name="lineEdit_02_modifing_tif">
+                <property name="placeholderText">
+                 <string>Urban center point raster (tif/tiff, values 0 and 1).</string>
+                </property>
+               </widget>
               </item>
               <item>
                <widget class="QToolButton" name="btn_02_modifing_tif">
@@ -307,12 +331,16 @@
               <item>
                <widget class="QLabel" name="label_02_modifing_csv">
                 <property name="text">
-                 <string>TextLabel</string>
+                 <string>Gaussian parameters</string>
                 </property>
                </widget>
               </item>
               <item>
-               <widget class="QLineEdit" name="lineEdit_02_modifing_csv"/>
+               <widget class="QLineEdit" name="lineEdit_02_modifing_csv">
+                <property name="placeholderText">
+                 <string>Gaussian correction parameters (csv, 4 columns).</string>
+                </property>
+               </widget>
               </item>
               <item>
                <widget class="QToolButton" name="btn_02_modifing_csv">
@@ -333,7 +361,7 @@
               <item>
                <widget class="QLabel" name="label_02_modifing_weight">
                 <property name="text">
-                 <string>权重</string>
+                 <string>Weight for Gaussian function</string>
                 </property>
                </widget>
               </item>
@@ -377,7 +405,7 @@
            </size>
           </property>
           <property name="title">
-           <string>模型参数</string>
+           <string>Global parameters</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignmentFlag::AlignCenter</set>
@@ -399,7 +427,7 @@
                <item>
                 <widget class="QLabel" name="label_03_strat_year">
                  <property name="text">
-                  <string/>
+                  <string>Starting time</string>
                  </property>
                  <property name="alignment">
                   <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
@@ -435,7 +463,7 @@
                <item>
                 <widget class="QLabel" name="label_03_end_Year">
                  <property name="text">
-                  <string/>
+                  <string>Ending time</string>
                  </property>
                  <property name="alignment">
                   <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
@@ -481,7 +509,7 @@
                <item>
                 <widget class="QLabel" name="label_03_location_uncertainty">
                  <property name="text">
-                  <string/>
+                  <string>Location uncertainty</string>
                  </property>
                 </widget>
                </item>
@@ -520,7 +548,7 @@
                <item>
                 <widget class="QLabel" name="label_03_neibor_type">
                  <property name="text">
-                  <string/>
+                  <string>Type of Neighborhood</string>
                  </property>
                  <property name="alignment">
                   <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
@@ -567,7 +595,7 @@
                <item>
                 <widget class="QLabel" name="label_03_pool_Slice">
                  <property name="text">
-                  <string/>
+                  <string>Pruning parameter</string>
                  </property>
                  <property name="alignment">
                   <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
@@ -615,7 +643,7 @@
                <item>
                 <widget class="QCheckBox" name="checkBox_03_organic_by_step">
                  <property name="text">
-                  <string/>
+                  <string>Enable Stepwise Organic Growth</string>
                  </property>
                  <property name="checked">
                   <bool>true</bool>
@@ -669,6 +697,9 @@
                      <height>16777215</height>
                     </size>
                    </property>
+                   <property name="placeholderText">
+                    <string>Organic growth step data (csv, 2 columns).</string>
+                   </property>
                   </widget>
                  </item>
                  <item>
@@ -693,7 +724,7 @@
            <string notr="true"/>
           </property>
           <property name="title">
-           <string>斑块生成引擎选择</string>
+           <string>Patch size generator</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignmentFlag::AlignHCenter|Qt::AlignmentFlag::AlignTop</set>
@@ -721,17 +752,17 @@
                <widget class="QComboBox" name="comboBox_04_generator_select">
                 <item>
                  <property name="text">
-                  <string>对数正态分布</string>
+                  <string>Lognormal Distribution</string>
                  </property>
                 </item>
                 <item>
                  <property name="text">
-                  <string>幂律分布</string>
+                  <string>Power Distribution</string>
                  </property>
                 </item>
                 <item>
                  <property name="text">
-                  <string>历史时期斑块大小</string>
+                  <string>History patch size</string>
                  </property>
                 </item>
                </widget>
@@ -779,7 +810,7 @@
               <item row="1" column="0">
                <widget class="QLabel" name="label_04_mean">
                 <property name="text">
-                 <string/>
+                 <string>Mean</string>
                 </property>
                 <property name="alignment">
                  <set>Qt::AlignmentFlag::AlignCenter</set>
@@ -808,7 +839,7 @@
               <item row="1" column="2">
                <widget class="QLabel" name="label_04_standard_deviation">
                 <property name="text">
-                 <string/>
+                 <string>Standard deviation</string>
                 </property>
                 <property name="alignment">
                  <set>Qt::AlignmentFlag::AlignCenter</set>
@@ -836,7 +867,7 @@
               <item row="1" column="0">
                <widget class="QLabel" name="label_04_scale_constant">
                 <property name="text">
-                 <string/>
+                 <string>Scale Constant</string>
                 </property>
                 <property name="alignment">
                  <set>Qt::AlignmentFlag::AlignCenter</set>
@@ -881,7 +912,7 @@
               <item row="1" column="2">
                <widget class="QLabel" name="label_04_power">
                 <property name="text">
-                 <string/>
+                 <string>Power</string>
                 </property>
                 <property name="alignment">
                  <set>Qt::AlignmentFlag::AlignCenter</set>
@@ -907,7 +938,11 @@
                <number>0</number>
               </property>
               <item>
-               <widget class="QLineEdit" name="lineEdit_04_self_defining_generator"/>
+               <widget class="QLineEdit" name="lineEdit_04_self_defining_generator">
+                <property name="placeholderText">
+                 <string>Patch size data (csv, 2 columns).</string>
+                </property>
+               </widget>
               </item>
               <item>
                <widget class="QToolButton" name="btn_04_self_defining_generator">
@@ -925,7 +960,7 @@
         <item>
          <widget class="QGroupBox" name="box_05_engine_select">
           <property name="title">
-           <string>斑块生成引擎选择</string>
+           <string>Patch generation operator</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignmentFlag::AlignCenter</set>
@@ -956,22 +991,22 @@
                <widget class="QComboBox" name="comboBox_05_engine_select">
                 <item>
                  <property name="text">
-                  <string>Simple Patch Generator Engine (SPGE)</string>
+                  <string>Simple Patch Generation Engine (SPGE)</string>
                  </property>
                 </item>
                 <item>
                  <property name="text">
-                  <string>Neighbor Patch Generator Engine (NPGE)</string>
+                  <string>Neighbor Patch Generation Engine (NeiPGE)</string>
                  </property>
                 </item>
                 <item>
                  <property name="text">
-                  <string>Distance Patch Generator Engine (DPGE)</string>
+                  <string>Distance Patch Generation Engine (DisPGE)</string>
                  </property>
                 </item>
                 <item>
                  <property name="text">
-                  <string>Tradeoff-optimized Patch Generator Engine (TPGE)</string>
+                  <string>Parameterized Patch Generation Engine (PPGE)</string>
                  </property>
                 </item>
                </widget>
@@ -1076,6 +1111,9 @@
                   <height>0</height>
                  </size>
                 </property>
+                <property name="placeholderText">
+                 <string>Optional input, (csv, 2 columns)</string>
+                </property>
                </widget>
               </item>
               <item>
@@ -1094,7 +1132,7 @@
         <item>
          <widget class="QGroupBox" name="box_06_run_and_export">
           <property name="title">
-           <string>模型验证</string>
+           <string>Results and performance</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignmentFlag::AlignCenter</set>
@@ -1127,7 +1165,7 @@
                  <item>
                   <widget class="QPushButton" name="btn_06_run">
                    <property name="text">
-                    <string>点击开始模拟</string>
+                    <string>Run</string>
                    </property>
                   </widget>
                  </item>
@@ -1155,7 +1193,7 @@
                  <item>
                   <widget class="QPushButton" name="btn_06_save">
                    <property name="text">
-                    <string>保存模拟数据</string>
+                    <string>Save</string>
                    </property>
                   </widget>
                  </item>
@@ -1287,7 +1325,11 @@
         </item>
        </layout>
       </widget>
-      <widget class="MyTextBrowser" name="textBrowser"/>
+      <widget class="MyTextBrowser" name="textBrowser">
+       <property name="placeholderText">
+        <string>Run Information Output...</string>
+       </property>
+      </widget>
      </widget>
     </item>
     <item>
@@ -1310,7 +1352,7 @@
    </property>
    <widget class="QMenu" name="files">
     <property name="title">
-     <string>文件</string>
+     <string>File</string>
     </property>
     <addaction name="action_00_open"/>
     <addaction name="action_00_save"/>
@@ -1319,7 +1361,7 @@
    </widget>
    <widget class="QMenu" name="tools">
     <property name="title">
-     <string>工具</string>
+     <string>Tool</string>
     </property>
     <addaction name="action_00_MUSE_Toolbox"/>
     <addaction name="actionge_00_ParsByGa"/>
@@ -1328,27 +1370,28 @@
    </widget>
    <widget class="QMenu" name="help">
     <property name="title">
-     <string>帮助</string>
+     <string>Help</string>
     </property>
     <addaction name="action_00_user_guid"/>
+    <addaction name="action_00_open_paper"/>
     <addaction name="separator"/>
     <addaction name="action_00_version"/>
     <addaction name="action_00_about"/>
    </widget>
    <widget class="QMenu" name="preferences">
     <property name="title">
-     <string>首选项</string>
+     <string>Preference</string>
     </property>
     <widget class="QMenu" name="language">
      <property name="title">
-      <string>语言</string>
+      <string>Language</string>
      </property>
      <addaction name="action_00_Chinese_Simplified"/>
      <addaction name="action_00_English"/>
     </widget>
     <widget class="QMenu" name="menumodel">
      <property name="title">
-      <string>model</string>
+      <string>Mode</string>
      </property>
      <addaction name="action_00_simulation"/>
      <addaction name="action_00_verification"/>
@@ -1374,47 +1417,53 @@
   </action>
   <action name="actionge_00_ParsByGa">
    <property name="text">
-    <string>GA寻参</string>
+    <string>Parameter Optimization Tool (POT) module</string>
    </property>
   </action>
   <action name="action_00_about">
    <property name="text">
-    <string>关于</string>
+    <string>About</string>
    </property>
   </action>
   <action name="action_00_Chinese_Simplified">
+   <property name="checkable">
+    <bool>false</bool>
+   </property>
    <property name="text">
-    <string>中文（简体）</string>
+    <string>Chinese(Simplified)</string>
    </property>
   </action>
   <action name="action_00_English">
+   <property name="checkable">
+    <bool>false</bool>
+   </property>
    <property name="text">
-    <string>英语</string>
+    <string>English</string>
    </property>
   </action>
   <action name="action_00_simulation">
    <property name="text">
-    <string>moni</string>
+    <string>Model validation</string>
    </property>
   </action>
   <action name="action_00_verification">
    <property name="text">
-    <string>ycue</string>
+    <string>Scenario simulation</string>
    </property>
   </action>
   <action name="action_00_exit">
    <property name="text">
-    <string>exit</string>
+    <string>Exit</string>
    </property>
   </action>
   <action name="action_00_save">
    <property name="text">
-    <string>save</string>
+    <string>Save</string>
    </property>
   </action>
   <action name="action_00_open">
    <property name="text">
-    <string>open</string>
+    <string>Open</string>
    </property>
   </action>
   <action name="actionpatchInfo">
@@ -1434,27 +1483,32 @@
   </action>
   <action name="action_00_version">
    <property name="text">
-    <string>version</string>
+    <string>Version</string>
    </property>
   </action>
   <action name="action_00_user_guid">
    <property name="text">
-    <string>user guide</string>
+    <string>User Guide</string>
    </property>
   </action>
   <action name="action_00_MUSE_Toolbox">
    <property name="text">
-    <string>MUSE_Toolbox</string>
+    <string>MUSE ArcGIS Pro Toolbox</string>
    </property>
   </action>
   <action name="action_00_mlcs">
    <property name="text">
-    <string>UDSA</string>
+    <string>Urban Development Suitability Assessment (UDSA) module</string>
    </property>
   </action>
   <action name="action_00_pst">
    <property name="text">
-    <string>PDC</string>
+    <string>Patch Size Statistical Analysis (PSSA)</string>
+   </property>
+  </action>
+  <action name="action_00_open_paper">
+   <property name="text">
+    <string>Open Paper</string>
    </property>
   </action>
  </widget>

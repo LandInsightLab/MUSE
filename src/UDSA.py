@@ -311,10 +311,6 @@ class UDSA_Dialog(QWidget):
 
         self.resizeEvent = self.customResizeEvent
 
-        # Set up comboBox_03
-        self.ui.comboBox_03.addItems(['XGBoost', 'Random Forest', 'SVM','MLP','Naive Bayes','Logistic Regression',  ])
-        self.ui.comboBox_03.setCurrentText('XGBoost')
-
         # Set lineEdit_03_sample_ratio default value
         self.ui.lineEdit_03_sample_ratio.setText('0.2')
 
@@ -332,14 +328,6 @@ class UDSA_Dialog(QWidget):
         self.ui.checkBox_03_save.stateChanged.connect(self.toggle_save)
 
         self.model_parameters_setting()
-        self.set_prompt()
-
-    def set_prompt(self):
-        self.ui.lineEdit_03_random_samples.setPlaceholderText("Number of random samples")
-        self.ui.lineEdit_03_sample_ratio.setPlaceholderText("Train = 1 - Test ratio")
-        self.ui.lineEdit_03_save.setPlaceholderText("Enter save path for training data (csv or txt)")
-        self.ui.lineEdit_05_save_path.setPlaceholderText("Enter save path for prediction results (tif or tiff)")
-        self.ui.textBrowser_06_output.setPlaceholderText("Run Information Output...")
 
     def set_initial_column_widths(self):
         column_width = self.ui.table_01.width()
