@@ -1397,7 +1397,9 @@
     </widget>
     <addaction name="language"/>
     <addaction name="menumodel"/>
+    <addaction name="separator"/>
     <addaction name="action_00_open_paper"/>
+    <addaction name="action_00_open_testdir"/>
    </widget>
    <addaction name="files"/>
    <addaction name="tools"/>
@@ -1509,6 +1511,11 @@
   <action name="action_00_open_paper">
    <property name="text">
     <string>Open Paper</string>
+   </property>
+  </action>
+  <action name="action_00_open_testdir">
+   <property name="text">
+    <string>Open TestDir</string>
    </property>
   </action>
  </widget>

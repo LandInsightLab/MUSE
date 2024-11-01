@@ -282,8 +282,8 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Model validation</source>
-        <translation type="unfinished">模型验证</translation>
+        <source>Calibration and validation</source>
+        <translation type="unfinished">校准与验证</translation>
     </message>
     <message>
         <source>Scenario simulation</source>
@@ -316,6 +316,10 @@
     <message>
         <source>Open Paper</source>
         <translation type="unfinished">转到论文</translation>
+    </message>
+    <message>
+        <source>Open TestDir</source>
+        <translation type="unfinished">打开测试文件目录</translation>
     </message>
     <message>
         <source>MUSE ArcGIS Pro Toolbox</source>

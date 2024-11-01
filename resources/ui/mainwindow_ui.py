@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'mainwindow.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.7.3
+## Created by: Qt User Interface Compiler version 6.8.0
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -80,6 +80,8 @@ class Ui_MainWindow(object):
         self.action_00_pst.setObjectName(u"action_00_pst")
         self.action_00_open_paper = QAction(MainWindow)
         self.action_00_open_paper.setObjectName(u"action_00_open_paper")
+        self.action_00_open_testdir = QAction(MainWindow)
+        self.action_00_open_testdir.setObjectName(u"action_00_open_testdir")
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.centralwidget.setStyleSheet(u"")
@@ -959,7 +961,9 @@ class Ui_MainWindow(object):
         self.help.addAction(self.action_00_MUSE_Toolbox)
         self.preferences.addAction(self.language.menuAction())
         self.preferences.addAction(self.menumodel.menuAction())
+        self.preferences.addSeparator()
         self.preferences.addAction(self.action_00_open_paper)
+        self.preferences.addAction(self.action_00_open_testdir)
         self.language.addAction(self.action_00_Chinese_Simplified)
         self.language.addAction(self.action_00_English)
         self.menumodel.addAction(self.action_00_simulation)
@@ -992,6 +996,7 @@ class Ui_MainWindow(object):
         self.action_00_mlcs.setText(QCoreApplication.translate("MainWindow", u"Urban Development Suitability Assessment (UDSA)", None))
         self.action_00_pst.setText(QCoreApplication.translate("MainWindow", u"Patch Size Statistical Analysis (PSSA)", None))
         self.action_00_open_paper.setText(QCoreApplication.translate("MainWindow", u"Open Paper", None))
+        self.action_00_open_testdir.setText(QCoreApplication.translate("MainWindow", u"Open TestDir", None))
         self.box_01_data_Input.setTitle(QCoreApplication.translate("MainWindow", u"Input files", None))
         self.label_01_urban_start.setText(QCoreApplication.translate("MainWindow", u"Urban land use map of starting time", None))
         self.lineEdit_01_urban_start.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Initial urban land raster (tif/tiff, values 0 and 1).", None))

@@ -26,7 +26,7 @@
 def load_large_modules():
     global pd, pickle, configparser, logging, sys
     global QFileDialog, QMessageBox, QDesktopServices, QPainter, QColor
-    global QUrl, QSettings, QPropertyAnimation, Qt
+    global QUrl, QSettings, QPropertyAnimation, Qt, QCoreApplication
     global MUSE_API, CheckTifDimensions
     global UDSA_Dialog, PSSA_Dialog
     global Ui_MainWindow
@@ -40,7 +40,7 @@ def load_large_modules():
 
     from PySide6.QtWidgets import QFileDialog, QMessageBox
     from PySide6.QtGui import QDesktopServices, QPainter, QColor
-    from PySide6.QtCore import QUrl, QSettings, QPropertyAnimation, Qt
+    from PySide6.QtCore import QUrl, QSettings, QPropertyAnimation, Qt, QCoreApplication
     from libs import MUSE_API, CheckTifDimensions
     from src.UDSA import UDSA_Dialog
     from src.PSSA import PSSA_Dialog
@@ -181,6 +181,7 @@ class MainWindow(QMainWindow):
         self.ui.action_00_version.triggered.connect(self.on_action_00_version_triggered)
         self.ui.action_00_user_guid.triggered.connect(self.on_action_00_user_guide_triggered)
         self.ui.action_00_open_paper.triggered.connect(self.on_action_00_open_paper_triggered)
+        self.ui.action_00_open_testdir.triggered.connect(self.on_action_00_open_test_dir_triggered)
         self.ui.action_00_MUSE_Toolbox.triggered.connect(self.on_action_00_muse_toolbox_triggered)
         # input ------------------------------------------------------------------------------------connect end
 
@@ -228,6 +229,7 @@ class MainWindow(QMainWindow):
         self.comboBox_04_generator_select_changed(0)
         self.comboBox_05_engine_select_changed(0)
         self.ui.lineEdit_05_shape_parameters_path.setMinimumWidth(180)  # Set the minimum width
+
 
     def setup_logging(self):
         """Set up logging configuration"""
@@ -513,7 +515,19 @@ class MainWindow(QMainWindow):
         paper_url = "https://doi.org/10.1080/13658816.2024.2416066"
         QDesktopServices.openUrl(QUrl(paper_url))
 
-    def on_action_00_patch_info_triggered(self):   
+    def on_action_00_open_test_dir_triggered(self):
+        # Get the application installation directory
+        install_dir = QCoreApplication.applicationDirPath()
+        test_dir_path = f"{install_dir}/__TEST_FILES"
+
+        # Check if the directory exists using QFileInfo
+        if QUrl.fromLocalFile(test_dir_path).isValid():
+            QDesktopServices.openUrl(QUrl.fromLocalFile(test_dir_path))
+        else:
+            # If the directory doesn't exist, display a warning message
+            QMessageBox.warning(None, "Warning", "Test directory does not exist.")
+
+    def on_action_00_patch_info_triggered(self):
 
         pass
 
