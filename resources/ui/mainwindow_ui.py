@@ -478,7 +478,8 @@ class Ui_MainWindow(object):
         self.horizontalLayout_12.setSizeConstraint(QLayout.SizeConstraint.SetFixedSize)
         self.checkBox_03_organic_by_step = QCheckBox(self.box_03_model_parameters)
         self.checkBox_03_organic_by_step.setObjectName(u"checkBox_03_organic_by_step")
-        self.checkBox_03_organic_by_step.setChecked(True)
+        self.checkBox_03_organic_by_step.setMouseTracking(True)
+        self.checkBox_03_organic_by_step.setChecked(False)
 
         self.horizontalLayout_12.addWidget(self.checkBox_03_organic_by_step)
 

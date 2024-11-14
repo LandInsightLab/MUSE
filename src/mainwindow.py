@@ -26,10 +26,10 @@
 def load_large_modules():
     global pd, pickle, configparser, logging, sys
     global QFileDialog, QMessageBox, QDesktopServices, QPainter, QColor
-    global QUrl, QSettings, QPropertyAnimation, Qt, QCoreApplication
+    global QUrl, QSettings, QPropertyAnimation, Qt, QCoreApplication, QEvent, QTimer
     global MUSE_API, CheckTifDimensions
     global UDSA_Dialog, PSSA_Dialog
-    global Ui_MainWindow
+    global Ui_MainWindow, Ui_Welcome
     global Path
     
     import sys
@@ -40,18 +40,45 @@ def load_large_modules():
 
     from PySide6.QtWidgets import QFileDialog, QMessageBox
     from PySide6.QtGui import QDesktopServices, QPainter, QColor
-    from PySide6.QtCore import QUrl, QSettings, QPropertyAnimation, Qt, QCoreApplication
+    from PySide6.QtCore import QUrl, QSettings, QPropertyAnimation, Qt, QCoreApplication, QEvent, QTimer
     from libs import MUSE_API, CheckTifDimensions
     from src.UDSA import UDSA_Dialog
     from src.PSSA import PSSA_Dialog
 
     from resources.ui.mainwindow_ui import Ui_MainWindow
+    from resources.ui.welcome_ui import Ui_Welcome
     from pathlib import Path
 
 from src.POT import POT_Widget
-from PySide6.QtWidgets import QDialog, QWidget, QMainWindow
+from PySide6.QtWidgets import QDialog, QWidget, QMainWindow, QLabel
 from PySide6.QtCore import Signal, QThread
 from resources.ui.aboutus_ui import Ui_AboutUs
+
+
+class WelcomeDialog(QDialog):
+    def __init__(self, config):
+        super().__init__()
+        
+        # Set up the UI from Ui_AboutUs
+        self.ui = Ui_Welcome()
+        self.ui.setupUi(self)
+        self.config = config
+        self.read_config()
+        self.setFixedSize(self.size()) 
+        self.ui.pushButton.clicked.connect(self.on_got_it_btn_clicked)
+    
+    def read_config(self):
+        version_info = self.config.get("Settings", "version", fallback="Unknown version")
+        welcome_message = f"Welcome to MUSE Software - Version {version_info}"
+        self.ui.label.setText(welcome_message)
+
+    def on_got_it_btn_clicked(self):
+        # If "Do not show again" checkbox is checked, set never_show to 1 in config
+        if self.ui.checkBox.isChecked():
+            self.config.set("Settings", "never_show", "1")
+            with open("config.ini", "w") as configfile:
+                self.config.write(configfile)
+        self.accept()  # Close the dialog
 
 
 class AboutDialog(QDialog):
@@ -221,6 +248,23 @@ class MainWindow(QMainWindow):
 
         self.mgot_widget.ui.btn_04_run.clicked.connect(self.on_mgot_ui_btn_04_run_clicked)
 
+        # Install event filter to capture the first show event
+        self.installEventFilter(self)
+
+
+    def eventFilter(self, obj, event):
+        if obj == self and event.type() == QEvent.Show:
+            QTimer.singleShot(50, self.show_welcome_dialog) 
+            self.removeEventFilter(self) 
+        return super().eventFilter(obj, event)
+
+
+    def show_welcome_dialog(self):
+        if self.config.get("Settings", "never_show", fallback="0") == "0":
+            self.welcome_dialog = WelcomeDialog(self.config)
+            self.welcome_dialog.exec()  
+        
+        
     def set_default_parameters(self):
         self.on_checkBox_03_organic_by_step_changed(True)
         self.ui.frame_02.setFixedWidth(64)
@@ -534,7 +578,6 @@ class MainWindow(QMainWindow):
     def on_action_00_version_triggered(self):
         version_info = self.config.get("Settings", "version", fallback="Unknown version")
         QMessageBox.information(self, "Version Information", f"Version: {version_info}")
-        pass
 
     def on_action_00_about_triggered(self):
         about_dialog = AboutDialog()

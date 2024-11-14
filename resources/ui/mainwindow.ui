@@ -642,11 +642,14 @@
                </property>
                <item>
                 <widget class="QCheckBox" name="checkBox_03_organic_by_step">
+                 <property name="mouseTracking">
+                  <bool>true</bool>
+                 </property>
                  <property name="text">
                   <string>Enable Stepwise Organic Growth</string>
                  </property>
                  <property name="checked">
-                  <bool>true</bool>
+                  <bool>false</bool>
                  </property>
                 </widget>
                </item>

@@ -1,16 +1,1 @@
-2024-10-24 14:44:50,850 - ERROR - Error while setting language to English: 'MainWindow' object has no attribute 'config'
-2024-10-24 14:44:53,865 - ERROR - Error while setting language to English: 'MainWindow' object has no attribute 'config'
-2024-10-24 14:46:50,517 - ERROR - Error while setting language to English: 'MainWindow' object has no attribute 'config'
-2024-10-24 14:46:55,778 - ERROR - Error while setting language to English: 'MainWindow' object has no attribute 'config'
-2024-10-24 15:12:33,751 - ERROR - Error while setting language to English: 'MainWindow' object has no attribute 'config'
-2024-10-24 15:12:36,567 - ERROR - Error while setting language to English: 'MainWindow' object has no attribute 'config'
-2024-10-24 15:14:12,465 - ERROR - Error while setting language to English: 'MainWindow' object has no attribute 'config'
-2024-10-24 15:14:33,851 - ERROR - Error while setting language to English: 'MainWindow' object has no attribute 'config'
-2024-10-24 15:14:35,681 - ERROR - Error while setting language to English: 'MainWindow' object has no attribute 'config'
-2024-10-24 15:16:24,032 - ERROR - Error while setting language to English: 'MainWindow' object has no attribute 'config'
-2024-10-24 15:44:20,178 - ERROR - Error while setting language to English: 'MainWindow' object has no attribute 'config'
-2024-10-24 16:22:35,303 - ERROR - Error while setting language to English: 'Settings'
-2024-10-24 16:22:38,388 - ERROR - Error while setting language to English: 'Settings'
-2024-10-24 16:22:42,977 - ERROR - Error while setting language to English: 'Settings'
-2024-10-24 16:23:47,661 - ERROR - Error while setting language to English: 'Settings'
-2024-10-26 23:03:34,321 - ERROR - Failed to open the file: Guide_ENG.pdf
+
