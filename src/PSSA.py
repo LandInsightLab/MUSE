@@ -242,12 +242,37 @@ class WorkerThread(QThread):
             result = fit_gaussian(buffer_spacing, p0)
             return result[0]
 
-        max_buffer_spacing = min(len(all_buffer_counts[0]), len(develope_buffer_counts[0])) // 200
+        # 自适应缓冲区间距计算
+        data_length = min(len(all_buffer_counts[0]), len(develope_buffer_counts[0]))
+        
+        # 目标：确保聚合后有合理数量的数据点用于拟合
+        if data_length >= 2000:
+            # 大数据集：目标200个点
+            target_points = 200
+            max_buffer_spacing = data_length // target_points
+            min_buffer_spacing = 10
+        elif data_length >= 1000:
+            # 中等数据集：目标100个点  
+            target_points = 100
+            max_buffer_spacing = data_length // target_points
+            min_buffer_spacing = 5
+        elif data_length >= 500:
+            # 小数据集：目标50个点
+            target_points = 50  
+            max_buffer_spacing = data_length // target_points
+            min_buffer_spacing = 3
+        else:
+            # 数据太少，无法进行有效的高斯拟合
+            raise ValueError(f"数据长度过短({data_length})，无法进行可靠的高斯拟合分析。建议使用更大的研究区域或更高分辨率的数据。")
+        
+        # 确保上界不小于下界
+        max_buffer_spacing = max(max_buffer_spacing, min_buffer_spacing)
+        
         bounds = [
-            (10, max_buffer_spacing),  # buffer_spacing范围
-            (0.001, 1),                 # p0_amplitude范围
-            (0.1, 200),                 # p0_mean范围
-            (0.1, 200)                  # p0_stddev范围
+            (min_buffer_spacing, max_buffer_spacing),  # buffer_spacing范围
+            (0.001, 1),                                # p0_amplitude范围
+            (0.1, 200),                                # p0_mean范围
+            (0.1, 200)                                 # p0_stddev范围
         ]
 
         result = differential_evolution(objective, bounds)
